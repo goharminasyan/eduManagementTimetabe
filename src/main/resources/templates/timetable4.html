@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/timetable.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="/static/js/popupControl.js"></script>
+    <title>Timetable</title>
+
+</head>
+<body>
+<div class="header" id="header">
+    <div th:insert="fragments/fragments :: container"></div>
+</div>
+<div class="main-wrapper">
+    <div class="sidebar" th:insert="fragments/fragments :: menu"></div>
+
+    <div class="middle">
+    <div class="url-path">
+        <a class="a-url" th:href="${'/'+firstUrl}" th:text="${'Academic classes'}"></a>
+<!--        change-->
+        <p class="a-url">/</p>
+        <a class="a-url" th:classappend="${allUrl}" th:href="${allUrl}" th:text="${middleUrl}"></a>
+<!--        change-->
+        <p class="a-url">/</p>
+        <a class="a-url" th:classappend="${activeTab}" th:href="${activeTab}" th:text="${'Timetable'}"></a>
+    </div>
+        <p class="msg">There is no active Timetable.</p>
+        <button class="show-btn" id="show-btn" ><b>Create Timetable</b></button>
+<!--        when click on button must go to the 4.1html-->
+    </div>
+
+    <div class="sidebar2">
+        <a href="#clasroom" class="item">Classroom</a>
+        <a href="#students" class="item">Students</a>
+        <a href="#courses" class="item">Courses</a>
+        <a href="#teachers" class="item">Teachers</a>
+        <a th:classappend="${activeTab eq 'timetable' ? 'activeTab' : 'notActiveTab'}" href="/timetable" class="item">Timetable</a>
+    </div>
+</div>
+</body>
+</html>
