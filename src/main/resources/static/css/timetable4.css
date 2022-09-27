@@ -169,6 +169,15 @@ body {
     color: white;
 }
 
+.successMsg {
+    font-size: 25px;
+    position: absolute;
+    top: 29%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: green;
+}
+
 .middle{
     margin-left: 21%;
     width: 80%;
