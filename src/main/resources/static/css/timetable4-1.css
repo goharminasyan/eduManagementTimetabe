@@ -45,11 +45,12 @@ body {
 
 /*Main part styles*/
 .main-wrapper {
-    margin: 0;
+    width: 100%;
+    display: flex;
     padding: 0px;
     background-color: #AAAAAA;
-    display: flex;
-    overflow: hidden;
+    height: 96vh;
+    position: fixed;
 }
 
 /*Sidebar styles*/
@@ -226,4 +227,27 @@ body {
     background-color:#D7D7D7;
     display: flex;
     overflow: hidden;
+}
+
+
+/*for url*/
+.url-path {
+    margin-right: 100%;
+    display: flex;
+}
+
+.a-url {
+    margin-right: -34px;
+    margin-top: 23px;
+    margin-left: -18%;
+    padding-left: 46px;
+    text-decoration: none;
+    color: #2b80a5;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+}
+
+.a-url:hover {
+    font-size: 110%;
 }

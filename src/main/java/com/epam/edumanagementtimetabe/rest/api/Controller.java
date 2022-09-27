@@ -9,7 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Controller {
 
     @GetMapping
-    public String getAll(ModelMap modelMap) {
+    public String get4(ModelMap modelMap) {
         return "timetable4";
+    }
+
+    @GetMapping("/creation")
+    public String get4_1(ModelMap modelMap) {
+        return "timetable4-1";
     }
 }
