@@ -13,6 +13,7 @@ body {
 
 
 /*Top part styles*/
+
 .container {
     width: 100%;
     margin: 0 auto;
@@ -23,8 +24,18 @@ body {
     background-color: #333333;
     display: flex;
     justify-content: space-between;
-    font-size: 1.3em;
-    height: 1.2em;
+    font-size: 1.7em;
+    height: 1.4em;
+}
+
+.topnav-left-side {
+    margin-left: 14px;
+    margin-top: 3px;
+}
+
+.topnav-right-side {
+    margin-right: 14px;
+    margin-top: 3px;
 }
 
 .nav-link-wrapper {
@@ -41,7 +52,6 @@ body {
 .nav-link-wrapper a:hover {
     color: #01A7F0;
 }
-
 
 /*Main part styles*/
 .main-wrapper {

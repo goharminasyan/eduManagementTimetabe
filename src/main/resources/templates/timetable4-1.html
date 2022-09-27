@@ -18,99 +18,100 @@
 <div class="main-wrapper">
     <div class="sidebar" th:insert="fragments/fragments :: menu"></div>
 
-<div class="middle">
-    <div class="url-path">
-        <a class="a-url" th:href="${'/'+firstUrl}" th:text="${'Academic classes'}"></a>
-        <!--        change-->
-        <p class="a-url">/</p>
-        <a class="a-url" th:classappend="${allUrl}" th:href="${allUrl}" th:text="${middleUrl}"></a>
-        <!--        change-->
-        <p class="a-url">/</p>
-        <a class="a-url" th:classappend="${activeTab}" th:href="${activeTab}" th:text="${'Timetable'}"></a>
-    </div>
+    <div class="middle">
+        <div class="url-path">
+            <a class="a-url" th:href="${'/'+firstUrl}" th:text="${'Academic classes'}"></a>
+            <!--        change-->
+            <p class="a-url">/</p>
+            <a class="a-url" th:classappend="${allUrl}" th:href="${allUrl}" th:text="${middleUrl}"></a>
+            <!--        change-->
+            <p class="a-url">/</p>
+            <a class="a-url" th:classappend="${activeTab}" th:href="${activeTab}" th:text="${'Timetable'}"></a>
+        </div>
 
-    <div class="main-down">
-        <form class="form-timetable" action="#">
-            <div class="dates_and_create">
-                <div class="dates">
-                    <div class="date_half">
-                        <label>Start date</label>
-                        <div class="input_left">
-                            <input class="date_input" type="text" name="startDate" placeholder="Pick date"
-                                   style="width: 100px;">
+        <div class="main-down">
+            <form class="form-timetable" action="#">
+                <div class="dates_and_create">
+                    <div class="dates">
+                        <div class="date_half">
+                            <label>Start date</label>
+                            <div class="input_left">
+                                <input class="date_input" type="text" name="startDate" placeholder="Pick date"
+                                       style="width: 100px;">
+                            </div>
+                        </div>
+                        <div class="date_half">
+                            <label>End date</label>
+                            <div class="input_left">
+                                <input class="date_input" type="text" name="startDate" placeholder="Pick date"
+                                       style="width: 100px;">
+                            </div>
                         </div>
                     </div>
-                    <div class="date_half">
-                        <label>End date</label>
-                        <div class="input_left">
-                            <input class="date_input" type="text" name="startDate" placeholder="Pick date"
-                                   style="width: 100px;">
+                    <div class="create">
+                        <input class="button" type="button" value="Create Timetable">
+                    </div>
+                </div>
+
+                <div class="timetable">
+                    <div class="dayOfWeek">
+                        <div class="dayHeader"><a>Monday</a></div>
+                        <div class="lessons"></div>
+                        <div class="add">
+                            <input class="plus" type="button" value="+">
+                        </div>
+                    </div>
+
+                    <div class="dayOfWeek">
+                        <div class="dayHeader"><a>Tuesday</a></div>
+                        <div class="lessons"></div>
+                        <div class="add">
+                            <input class="plus" type="button" value="+">
+                        </div>
+                    </div>
+
+                    <div class="dayOfWeek">
+                        <div class="dayHeader"><a>Wednesday</a></div>
+                        <div class="lessons"></div>
+                        <div class="add">
+                            <input class="plus" type="button" value="+">
+                        </div>
+                    </div>
+
+                    <div class="dayOfWeek">
+                        <div class="dayHeader"><a>Thursday</a></div>
+                        <div class="lessons"></div>
+                        <div class="add">
+                            <input class="plus" type="button" value="+">
+                        </div>
+                    </div>
+
+                    <div class="dayOfWeek">
+                        <div class="dayHeader"><a>Friday</a></div>
+                        <div class="lessons"></div>
+                        <div class="add">
+                            <input class="plus" type="button" value="+">
+                        </div>
+                    </div>
+
+                    <div class="dayOfWeek">
+                        <div class="dayHeader"><a>Saturday</a></div>
+                        <div class="lessons"></div>
+                        <div class="add">
+                            <input class="plus" type="button" value="+">
+                        </div>
+                    </div>
+
+                    <div class="dayOfWeek">
+                        <div class="dayHeader"><a>Sunday</a></div>
+                        <div class="lessons"></div>
+                        <div class="add">
+                            <input class="plus" type="button" value="+">
                         </div>
                     </div>
                 </div>
-                <div class="create">
-                    <input class="button" type="button" value="Create Timetable">
-                </div>
-            </div>
-
-            <div class="timetable">
-                <div class="dayOfWeek">
-                    <div class="dayHeader"><a>Monday</a></div>
-                    <div class="lessons"></div>
-                    <div class="add">
-                        <input class="plus" type="button" value="+">
-                    </div>
-                </div>
-
-                <div class="dayOfWeek">
-                    <div class="dayHeader"><a>Tuesday</a></div>
-                    <div class="lessons"></div>
-                    <div class="add">
-                        <input class="plus" type="button" value="+">
-                    </div>
-                </div>
-
-                <div class="dayOfWeek">
-                    <div class="dayHeader"><a>Wednesday</a></div>
-                    <div class="lessons"></div>
-                    <div class="add">
-                        <input class="plus" type="button" value="+">
-                    </div>
-                </div>
-
-                <div class="dayOfWeek">
-                    <div class="dayHeader"><a>Thursday</a></div>
-                    <div class="lessons"></div>
-                    <div class="add">
-                        <input class="plus" type="button" value="+">
-                    </div>
-                </div>
-
-                <div class="dayOfWeek">
-                    <div class="dayHeader"><a>Friday</a></div>
-                    <div class="lessons"></div>
-                    <div class="add">
-                        <input class="plus" type="button" value="+">
-                    </div>
-                </div>
-
-                <div class="dayOfWeek">
-                    <div class="dayHeader"><a>Saturday</a></div>
-                    <div class="lessons"></div>
-                    <div class="add">
-                        <input class="plus" type="button" value="+">
-                    </div>
-                </div>
-
-                <div class="dayOfWeek">
-                    <div class="dayHeader"><a>Sunday</a></div>
-                    <div class="lessons"></div>
-                    <div class="add">
-                        <input class="plus" type="button" value="+">
-                    </div>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 </body>
