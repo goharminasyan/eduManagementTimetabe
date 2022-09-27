@@ -1,20 +1,21 @@
 package com.epam.edumanagementtimetabe.rest.api;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@org.springframework.stereotype.Controller
+@Controller
 @RequestMapping("/timetable")
-public class Controller {
+public class TimetableController {
 
     @GetMapping
-    public String get4(ModelMap modelMap) {
+    public String get4() {
         return "timetable4";
     }
 
     @GetMapping("/creation")
-    public String get4_1(ModelMap modelMap) {
+    public String get4_1() {
         return "timetable4-1";
     }
 }
