@@ -141,14 +141,14 @@ body {
 /*for url*/
 .url-path {
     margin-right: 100%;
-    display: flex;
+    display: inline-flex;
 }
 
 .a-url {
     margin-right: -34px;
     margin-top: 23px;
-    margin-left: -18%;
-    padding-left: 46px;
+    margin-left: -5%;
+    padding-left: 57px;
     text-decoration: none;
     color: #2b80a5;
     cursor: pointer;
