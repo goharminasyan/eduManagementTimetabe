@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../static/css/timetable4-1.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <script src="/static/js/popupControl.js"></script>
 
     <title>Timetable</title>
 </head>
@@ -15,7 +19,7 @@
     <div th:insert="fragments/fragments :: container"></div>
 </div>
 
-<div class="main-wrapper">
+<div class="main-wrapper" id="main-wrapper">
     <div class="sidebar" th:insert="fragments/fragments :: menu"></div>
 
     <div class="middle">
@@ -50,7 +54,7 @@
                         </div>
                     </div>
                     <div class="create">
-                        <input class="button" type="button" value="Create Timetable">
+                        <button type="submit" class="button"><b>Create Timetable</b></button>
                     </div>
                 </div>
 
@@ -83,7 +87,7 @@
                             </div>
                         </div>
                         <div class="add">
-                            <input class="plus" type="button" value="+">
+                            <button type="button" onclick="PopUpShow()" class="plus" value="Monday"><b>+</b></button>
                         </div>
                     </div>
 
@@ -91,7 +95,7 @@
                         <div class="dayHeader"><a>Tuesday</a></div>
                         <div class="lessons"></div>
                         <div class="add">
-                            <input class="plus" type="button" value="+">
+                            <button type="button" onclick="PopUpShow()" class="plus" value="Tuesday"><b>+</b></button>
                         </div>
                     </div>
 
@@ -99,7 +103,7 @@
                         <div class="dayHeader"><a>Wednesday</a></div>
                         <div class="lessons"></div>
                         <div class="add">
-                            <input class="plus" type="button" value="+">
+                            <button type="button" onclick="PopUpShow()" class="plus" value="Wednesday"><b>+</b></button>
                         </div>
                     </div>
 
@@ -107,7 +111,7 @@
                         <div class="dayHeader"><a>Thursday</a></div>
                         <div class="lessons"></div>
                         <div class="add">
-                            <input class="plus" type="button" value="+">
+                            <button type="button" onclick="PopUpShow()" class="plus" value="Thursday"><b>+</b></button>
                         </div>
                     </div>
 
@@ -115,7 +119,7 @@
                         <div class="dayHeader"><a>Friday</a></div>
                         <div class="lessons"></div>
                         <div class="add">
-                            <input class="plus" type="button" value="+">
+                            <button type="button" onclick="PopUpShow()" class="plus" value="Friday"><b>+</b></button>
                         </div>
                     </div>
 
@@ -123,7 +127,7 @@
                         <div class="dayHeader"><a>Saturday</a></div>
                         <div class="lessons"></div>
                         <div class="add">
-                            <input class="plus" type="button" value="+">
+                            <button type="button" onclick="PopUpShow()" class="plus" value="Saturday"><b>+</b></button>
                         </div>
                     </div>
 
@@ -131,12 +135,44 @@
                         <div class="dayHeader"><a>Sunday</a></div>
                         <div class="lessons"></div>
                         <div class="add">
-                            <input class="plus" type="button" value="+">
+                            <button type="button" onclick="PopUpShow()" class="plus" value="Sunday"><b>+</b></button>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
+    </div>
+</div>
+
+
+<div class="create-pop">
+
+    <div class="popup-container" id="popup-container">
+        <button class="close-btn" title="close" onclick="PopUpHide()">×</button>
+        <h1>Add Lesson</h1>
+
+        <!--            <form id="form" class="form" th:method="POST" th:action="@{/timetable/creation}">-->
+
+        <!--            <script th:inline="javascript" th:if="${#fields.hasAnyErrors()} or ${duplicated}">-->
+        <!--                PopUpShow();-->
+        <!--            </script>-->
+        <div class="popup-wrapper">
+            <div class="half">
+                <label class="popup-label-title">Course <span style="color:#A30014">*</span></label>
+                <!--                    <select class="form_input" th:name="academicClass" th:id="academicClass"-->
+                <!--                            th:field="*{academicClass}">-->
+                <!--                        <option class="short" data-limit="23" th:value="*{academicClass}">Class</option>-->
+                <!--                        <option class="short" data-limit="23" th:each="class : ${classes}" th:value="${class.id}"-->
+                <!--                                th:text="${class.classNumber}"></option>-->
+                <!--                    </select>-->
+                <div class="error"></div>
+            </div>
+            <div class="half2"></div>
+            <div name="btn-div">
+                <button type="button" class="button-save" id="submit"><b>Save</b></button>
+            </div>
+        </div>
+        <!--            </form>-->
     </div>
 </div>
 </body>
