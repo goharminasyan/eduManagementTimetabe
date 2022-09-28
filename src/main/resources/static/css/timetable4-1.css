@@ -65,7 +65,7 @@ body {
 
 /*Sidebar styles*/
 .sidebar {
-    width: 16%;
+    width: 21%;
     padding: 0px;
     background-color: #555555;
     margin: 0;
@@ -120,7 +120,7 @@ body {
 /*Main down containing dates,create timetable and lessons style*/
 .main-down{
     margin: 0;
-    padding: 12px;
+    padding: 0px;
     background-color: #AAAAAA;
     display: flex;
     overflow: hidden;
@@ -142,6 +142,7 @@ body {
     margin: 0;
     padding: 0px;
     display: flex;
+    margin-top: 35px;
 }
 
 .dates{
@@ -233,7 +234,7 @@ body {
 
 .lessons{
     margin: 0;
-    padding: 183px 20px;
+    padding: 170px 20px;
     background-color:#D7D7D7;
     display: flex;
     overflow: hidden;
