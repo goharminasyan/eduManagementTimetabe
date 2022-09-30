@@ -4,6 +4,7 @@ import com.epam.edumanagementtimetabe.model.entity.AcademicCourse;
 import com.epam.edumanagementtimetabe.rest.service.AcademicCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,8 @@ public class TimetableController {
     }
 
     @GetMapping
-    public String get4() {
+    public String get4(ModelMap modelMap) {
+        modelMap.addAttribute("timetable", "timetable");
         return "timetable4";
     }
 

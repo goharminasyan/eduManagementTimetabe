@@ -30,20 +30,124 @@
         <a class="a-url" th:classappend="${allUrl}" th:href="${allUrl}" th:text="${middleUrl}"></a>
 <!--        change-->
         <p class="a-url">/</p>
-        <a class="a-url" th:classappend="${activeTab}" th:href="${activeTab}" th:text="${'Timetable'}"></a>
+        <a class="a-url" th:href="${activeTab}" th:text="${'Timetable'}"></a>
     </div>
-        <p class="msg">There is no active Timetable.</p>
-        <button class="show-btn" id="show-btn" ><b>Create Timetable</b></button>
-<!--        when click on button must go to the 4.1html-->
+        <div th:if="${timetable == null}">
+            <p class="msg">There is no active Timetable.</p>
+            <button class="show-btn" id="show-btn" ><b>Create Timetable</b></button>
+            <!--        when click on button must go to the 4.1html-->
+        </div>
+
+        <div class="main-down" th:if="${timetable != null}">
+            <form class="form-timetable" action="#">
+                <div class="dates_and_create">
+                    <div class="dates">
+                        <div class="date_half">
+                            <label>Start date</label>
+                            <div class="input_left">
+                                <input class="date_input" type="text" name="startDate" placeholder="Pick date"
+                                       style="width: 100px;">
+                            </div>
+                        </div>
+                        <div class="date_half">
+                            <label>End date</label>
+                            <div class="input_left">
+                                <input class="date_input" type="text" name="startDate" placeholder="Pick date"
+                                       style="width: 100px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="create">
+                        <input class="button" type="button" value="Edit">
+                    </div>
+                </div>
+
+                <div class="timetable">
+                    <div class="dayOfWeek">
+                        <div class="dayHeader"><a>Monday</a></div>
+                        <div class="lessons">
+                            <div class="single_lesson_wrapper">
+                                <div class="single_item">
+                                    <div class="btn"><label for="show" class="close-btn" title="close">×</label>
+                                    </div>
+                                    <div class="title"><a>English</a></div>
+                                </div>
+                                <div class="single_item">
+                                    <div class="btn"><label for="show" class="close-btn" title="close">×</label>
+                                    </div>
+                                    <div class="title"><a>Python</a></div>
+                                </div>
+                                <div class="single_item">
+                                    <div class="btn"><label for="show" class="close-btn" title="close">×</label>
+                                    </div>
+                                    <div class="title"><a>Java</a></div>
+                                </div>
+                                <div class="single_item">
+                                    <div class="btn"><label for="show" class="close-btn" title="close">×</label>
+                                    </div>
+                                    <div class="title"><a>JavaScript</a></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dayOfWeek">
+                        <div class="dayHeader"><a>Tuesday</a></div>
+                        <div class="lessons"></div>
+                    </div>
+
+                    <div class="dayOfWeek">
+                        <div class="dayHeader"><a>Wednesday</a></div>
+                        <div class="lessons"></div>
+                    </div>
+
+                    <div class="dayOfWeek">
+                        <div class="dayHeader"><a>Thursday</a></div>
+                        <div class="lessons"></div>
+                    </div>
+
+                    <div class="dayOfWeek">
+                        <div class="dayHeader"><a>Friday</a></div>
+                        <div class="lessons"></div>
+                    </div>
+
+                    <div class="dayOfWeek">
+                        <div class="dayHeader"><a>Saturday</a></div>
+                        <div class="lessons"></div>
+                    </div>
+
+                    <div class="dayOfWeek">
+                        <div class="dayHeader"><a>Sunday</a></div>
+                        <div class="lessons"></div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="sidebar2">
+                <a href="#clasroom" class="item">Classroom</a>
+                <a href="#students" class="item">Students</a>
+                <a href="#courses" class="item">Courses</a>
+                <a href="#teachers" class="item">Teachers</a>
+                <a th:classappend="${activeTab eq 'timetable' ? 'activeTab' : 'notActiveTab'}" href="/timetable" class="item">Timetable</a>
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="sidebar2">
-        <a href="#clasroom" class="item">Classroom</a>
-        <a href="#students" class="item">Students</a>
-        <a href="#courses" class="item">Courses</a>
-        <a href="#teachers" class="item">Teachers</a>
-        <a th:classappend="${activeTab eq 'timetable' ? 'activeTab' : 'notActiveTab'}" href="/timetable" class="item">Timetable</a>
-    </div>
+<!--    <div class="popup-container" id="popup-container">-->
+<!--        <label class="close-btn" onclick="PopUpHide()" title="close">×</label>-->
+
+<!--        <script th:inline="javascript" th:if="${timetable} != null">-->
+<!--            PopUpShow();-->
+<!--        </script>-->
+
+<!--        <div class="popup-wrapper">-->
+
+<!--        </div>-->
+<!--    </div>-->
+
 </div>
 </body>
 </html>
