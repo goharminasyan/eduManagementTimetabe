@@ -1,4 +1,4 @@
-package com.epam.edumanagementtimetabe.rest.api;
+package com.epam.edumanagementtimetabe.util;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;

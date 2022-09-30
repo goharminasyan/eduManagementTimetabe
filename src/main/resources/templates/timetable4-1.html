@@ -135,7 +135,7 @@
                         <div class="dayHeader"><a>Sunday</a></div>
                         <div class="lessons"></div>
                         <div class="add">
-                            <button type="button" onclick="PopUpShow()" class="plus" value="Sunday"><b>+</b></button>
+                            <button type="button" onclick="PopUpShow()" class="plus" th:value="Sunday"><b>+</b></button>
                         </div>
                     </div>
                 </div>
@@ -158,6 +158,7 @@
         <!--            </script>-->
         <div class="popup-wrapper">
             <div class="half">
+                <p hidden value=""> </p>
                 <label class="popup-label-title">Course <span style="color:#A30014">*</span></label>
                 <!--                    <select class="form_input" th:name="academicClass" th:id="academicClass"-->
                 <!--                            th:field="*{academicClass}">-->
