@@ -1,9 +1,6 @@
 package com.epam.edumanagementtimetabe.util.entity;
 
-import com.epam.edumanagementsystem.admin.model.entity.Admin;
-import com.epam.edumanagementsystem.parent.model.entity.Parent;
-import com.epam.edumanagementsystem.student.model.entity.Student;
-import com.epam.edumanagementsystem.teacher.model.entity.Teacher;
+import com.epam.edumanagementtimetabe.model.entity.Teacher;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -26,26 +23,27 @@ public class User {
     @NotBlank
     private String role;
 
-    @OneToOne(mappedBy = "user")
-    private Student student;
+//    @OneToOne(mappedBy = "user")
+//    private Student student;
+//
+//    @OneToOne(mappedBy = "user")
+//    private Parent parent;
+//
+//    @OneToOne(mappedBy = "user")
+//    private Admin admin;
 
-    @OneToOne(mappedBy = "user")
-    private Parent parent;
-
-    @OneToOne(mappedBy = "user")
-    private Admin admin;
-
-    @OneToOne(mappedBy = "user")
+    @OneToOne(/*mappedBy = "user"*/)
     private Teacher teacher;
 
 
-    public User(Long id,  String email, String role) {
+    public User(Long id, String email, String role) {
         this.id = id;
         this.email = email;
         this.role = role;
     }
 
-    public User() {}
+    public User() {
+    }
 
     public Long getId() {
         return id;

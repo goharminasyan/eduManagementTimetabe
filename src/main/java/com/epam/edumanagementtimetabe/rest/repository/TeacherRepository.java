@@ -9,5 +9,5 @@ public interface TeacherRepository extends JpaRepository<Teacher, Long> {
 
     Teacher getTeacherById(Long id);
 
-    Teacher findByUserId(Long id);
+//    Teacher findByUserId(Long id);
 }

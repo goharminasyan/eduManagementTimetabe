@@ -13,5 +13,5 @@ public interface TeacherService {
 
     Teacher getTeacherById(Long id);
 
-    Teacher findByUserId(Long id);
+//    Teacher findByUserId(Long id);
 }

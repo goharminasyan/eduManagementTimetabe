@@ -3,8 +3,6 @@ package com.epam.edumanagementtimetabe.rest.api;
 import com.epam.edumanagementtimetabe.model.dto.TeacherDto;
 import com.epam.edumanagementtimetabe.rest.service.TeacherService;
 import com.epam.edumanagementtimetabe.util.EmailValidation;
-import com.epam.edumanagementtimetabe.util.entity.User;
-import com.epam.edumanagementtimetabe.util.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,14 +21,14 @@ public class TeacherController {
 
     //    private final PasswordEncoder bcryptPasswordEncoder;
     private final TeacherService teacherService;
-    private final UserService userService;
+//    private final UserService userService;
 
     @Autowired
-    public TeacherController(/*PasswordEncoder bcryptPasswordEncoder,*/ TeacherService teacherService,
-                                                                        UserService userService) {
+    public TeacherController(/*PasswordEncoder bcryptPasswordEncoder,*/ TeacherService teacherService/*,
+                                                                        UserService userService*/) {
 //        this.bcryptPasswordEncoder = bcryptPasswordEncoder;
         this.teacherService = teacherService;
-        this.userService = userService;
+//        this.userService = userService;
     }
 
     @GetMapping
@@ -47,12 +45,12 @@ public class TeacherController {
         List<TeacherDto> allTeachersDto = teacherService.findAll();
         model.addAttribute("teachers", allTeachersDto);
 
-        for (User user : userService.findAll()) {
-            if (teacherDto.getEmail().equalsIgnoreCase(user.getEmail())) {
-                model.addAttribute("duplicated", "A user with the specified email already exists");
-                return "teacherSection";
-            }
-        }
+//        for (User user : userService.findAll()) {
+//            if (teacherDto.getEmail().equalsIgnoreCase(user.getEmail())) {
+//                model.addAttribute("duplicated", "A user with the specified email already exists");
+//                return "teacherSection";
+//            }
+//        }
 
         if (result.hasErrors()) {
             if (!result.hasFieldErrors("email")) {

@@ -1,6 +1,5 @@
 package com.epam.edumanagementtimetabe.model.entity;
 
-import com.epam.edumanagementtimetabe.util.entity.User;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -24,8 +23,8 @@ public class Teacher {
     @Size(max = 50, message = "Symbols can't be more than 50")
     private String surname;
 
-    @OneToOne
-    private User user;
+//    @OneToOne
+//    private User user;
 
     @NotBlank(message = "Please, fill the required fields")
     private String password;
@@ -37,11 +36,11 @@ public class Teacher {
 
     }
 
-    public Teacher(Long id, String name, String surname, User user, String password) {
+    public Teacher(Long id, String name, String surname, /*User user,*/ String password) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.user = user;
+//        this.user = user;
         this.password = password;
         this.subjectSet = subjectSet;
     }
@@ -82,14 +81,14 @@ public class Teacher {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public String getPassword() {
         return password;
@@ -106,13 +105,13 @@ public class Teacher {
         Teacher teacher = (Teacher) o;
         return Objects.equals(id, teacher.id) && Objects.equals(name, teacher.name) &&
                 Objects.equals(surname, teacher.surname) &&
-                Objects.equals(user, teacher.user) &&
+               // Objects.equals(user, teacher.user) &&
                 Objects.equals(password, teacher.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, surname, user, password);
+        return Objects.hash(id, name, surname, /*user,*/ password);
     }
 
     @Override
@@ -121,7 +120,7 @@ public class Teacher {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", user=" + user +
+//                ", user=" + user +
                 ", password='" + password + '\'' +
                 '}';
     }
