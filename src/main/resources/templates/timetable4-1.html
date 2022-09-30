@@ -151,7 +151,7 @@
         <button class="close-btn" title="close" onclick="PopUpHide()">×</button>
         <h1>Add Lesson</h1>
 
-        <!--            <form id="form" class="form" th:method="POST" th:action="@{/timetable/creation}">-->
+                    <form id="form" class="form" th:method="POST" th:action="@{/timetable/creation}">
 
         <!--            <script th:inline="javascript" th:if="${#fields.hasAnyErrors()} or ${duplicated}">-->
         <!--                PopUpShow();-->
@@ -170,10 +170,10 @@
             </div>
             <div class="half2"></div>
             <div name="btn-div">
-                <button type="button" class="button-save" id="submit"><b>Save</b></button>
+                <button type="submit" class="button-save" id="submit"><b>Save</b></button>
             </div>
         </div>
-        <!--            </form>-->
+                    </form>
     </div>
 </div>
 </body>

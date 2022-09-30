@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -28,6 +29,11 @@ public class TimetableController {
     @GetMapping("/creation")
     public String get4_1(Model model) {
       model.addAttribute("courses", academicCourseService.findAll());
+        return "timetable4-1";
+    }
+    @PostMapping("/creation")
+    public String post4_1(Model model) {
+        model.addAttribute("courses", academicCourseService.findAll());
         return "timetable4-1";
     }
 
