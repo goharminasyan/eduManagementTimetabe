@@ -10,6 +10,40 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
     <script src="/static/js/popupControl.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#startDate").datepicker({
+                dateFormat: "dd-mm-yy",
+                changeMonth: true,
+                changeYear: true
+            });
+            $("#endDate").datepicker({
+                dateFormat: "dd-mm-yy",
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+
+    </script>
+    <style>
+        .ui-datepicker .ui-datepicker-header {
+            position: relative;
+            padding: 7px 0;
+            background: #01A7F0;
+            border: 0;
+            margin: -1px;
+            border-radius: 0;
+        }
+
+        .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+            border: 1px solid #01A7F0;
+            background: #01A7F0;
+            color: #111111;
+        }
+    </style>
 
     <title>Timetable</title>
 </head>
@@ -39,17 +73,19 @@
                 <div class="dates_and_create">
                     <div class="dates">
                         <div class="date_half">
-                            <label>Start date</label>
-                            <div class="input_left">
-                                <input class="date_input" type="text" name="startDate" placeholder="Pick date"
-                                       style="width: 100px;">
-                            </div>
+                            <label>Start date <span style="color:#A30014">* </span></label>
+                            <input class="form_input" placeholder="Date pick"
+                                   th:type="text"
+                                   th:name="startDate"
+                                   th:id="startDate"/>
                         </div>
                         <div class="date_half">
-                            <label>End date</label>
+                            <label>End date <span style="color:#A30014">* </span></label>
                             <div class="input_left">
-                                <input class="date_input" type="text" name="startDate" placeholder="Pick date"
-                                       style="width: 100px;">
+                                <input class="form_input" placeholder="Date pick"
+                                       th:type="text"
+                                       th:name="endDate"
+                                       th:id="endDate"/>
                             </div>
                         </div>
                     </div>
@@ -64,12 +100,10 @@
                         <div class="lessons">
                             <div class="single_lesson_wrapper">
                                 <div class="single_item" th:each="item : ${lessons}">
-                                    <div class="btn" ><label for="show" class="close-btn" title="close">×</label>
+                                    <div class="btn"><label for="show" class="close-btn" title="close">×</label>
                                     </div>
-                                    <div class="title" ><a th:text="${item.key}" th:value="${item.value}">Name</a></div>
+                                    <div class="title"><a th:text="${item.key}" th:value="${item.value}">Name</a></div>
                                 </div>
-
-
 
 
                             </div>
@@ -147,29 +181,29 @@
         <button class="close-btn" title="close" onclick="PopUpHide()">×</button>
         <h1>Add Lesson</h1>
 
-                    <form id="form" class="form" th:method="POST" th:action="@{/timetable/creation}">
+        <form id="form" class="form" th:method="POST" th:action="@{/timetable/creation}">
 
-        <!--            <script th:inline="javascript" th:if="${#fields.hasAnyErrors()} or ${duplicated}">-->
-        <!--                PopUpShow();-->
-        <!--            </script>-->
-        <div class="popup-wrapper">
-            <div class="half">
-                <p hidden value=""> </p>
-                <label class="popup-label-title">Course <span style="color:#A30014">*</span></label>
-                                    <select class="form_input" th:name="academicCourse" th:id="academicCourse"
-                                            th:field="*{courses}">
-                                        <option class="short" data-limit="23" th:value="*{courses}"></option>
-                                        <option class="short" data-limit="23" th:each="course : ${courses}" th:value="${course.id}"
-                                                th:text="${course.getName()}"></option>
-                                    </select>
-                <div class="error"></div>
+            <!--            <script th:inline="javascript" th:if="${#fields.hasAnyErrors()} or ${duplicated}">-->
+            <!--                PopUpShow();-->
+            <!--            </script>-->
+            <div class="popup-wrapper">
+                <div class="half">
+                    <p hidden value=""></p>
+                    <label class="popup-label-title">Course <span style="color:#A30014">*</span></label>
+                    <select class="form_input" th:name="academicCourse" th:id="academicCourse"
+                            th:field="*{courses}">
+                        <option class="short" data-limit="23" th:value="*{courses}"></option>
+                        <option class="short" data-limit="23" th:each="course : ${courses}" th:value="${course.id}"
+                                th:text="${course.getName()}"></option>
+                    </select>
+                    <div class="error"></div>
+                </div>
+                <div class="half2"></div>
+                <div name="btn-div">
+                    <button type="submit" class="button-save" id="submit"><b>Save</b></button>
+                </div>
             </div>
-            <div class="half2"></div>
-            <div name="btn-div">
-                <button type="submit" class="button-save" id="submit"><b>Save</b></button>
-            </div>
-        </div>
-                    </form>
+        </form>
     </div>
 </div>
 </body>
