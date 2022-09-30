@@ -6,6 +6,7 @@ import com.epam.edumanagementtimetabe.model.entity.Course;
 import javax.persistence.*;
 import java.time.DayOfWeek;
 import java.util.Objects;
+import java.util.*;
 
 public class TimetableDto {
 
@@ -16,12 +17,12 @@ public class TimetableDto {
 
     private AcademicClass academicClass;
 
-    private Course course;
+    private List<Course> course;
 
     public TimetableDto() {
     }
 
-    public TimetableDto(Long id, DayOfWeek day, AcademicClass academicClass, Course course) {
+    public TimetableDto(Long id, DayOfWeek day, AcademicClass academicClass, List<Course> course) {
         this.id = id;
         this.day = day;
         this.academicClass = academicClass;
@@ -52,11 +53,11 @@ public class TimetableDto {
         this.academicClass = academicClass;
     }
 
-    public Course getCourse() {
+    public List<Course> getCourse() {
         return course;
     }
 
-    public void setCourse(Course course) {
+    public void setCourse(List<Course> course) {
         this.course = course;
     }
 
