@@ -73,11 +73,11 @@
                 <div class="dates_and_create">
                     <div class="dates">
                         <div class="date_half">
-                            <label>Start date</label>
-                            <div class="input_left">
-                                <input class="date_input" type="text" name="startDate" placeholder="Pick date"
-                                       style="width: 100px;">
-                            </div>
+                            <label>Start date <span style="color:#A30014">* </span></label>
+                            <input class="form_input" placeholder="Date pick"
+                                   th:type="text"
+                                   th:name="startDate"
+                                   th:id="startDate"/>
                         </div>
                         <div class="date_half">
                             <label>End date <span style="color:#A30014">* </span></label>
@@ -100,11 +100,13 @@
                         <div class="lessons">
                             <div class="single_lesson_wrapper">
 
+
                                 <div class="single_item" th:each="lesson : ${lessons}">
                                     <p th:each="item : ${lesson.value}"> </p>
                                     <div class="btn"><label for="show" class="close-btn" title="close">×</label> </div>
                                     <div class="title" ><a th:text="${item.getName()}">Name</a></div>
                                 </div>
+
 
 
                             </div>
@@ -182,29 +184,29 @@
         <button class="close-btn" title="close" onclick="PopUpHide()">×</button>
         <h1>Add Lesson</h1>
 
-                    <form id="form" class="form" th:method="POST" th:action="@{/timetable/creation}">
+        <form id="form" class="form" th:method="POST" th:action="@{/timetable/creation}">
 
-        <!--            <script th:inline="javascript" th:if="${#fields.hasAnyErrors()} or ${duplicated}">-->
-        <!--                PopUpShow();-->
-        <!--            </script>-->
-        <div class="popup-wrapper">
-            <div class="half">
-                <p hidden value=""> </p>
-                <label class="popup-label-title">Course <span style="color:#A30014">*</span></label>
-                                    <select class="form_input" th:name="academicCourse" th:id="academicCourse"
-                                            th:field="*{courses}">
-                                        <option class="short" data-limit="23" th:value="*{courses}"></option>
-                                        <option class="short" data-limit="23" th:each="course : ${courses}" th:value="${course.id}"
-                                                th:text="${course.getName()}"></option>
-                                    </select>
-                <div class="error"></div>
+            <!--            <script th:inline="javascript" th:if="${#fields.hasAnyErrors()} or ${duplicated}">-->
+            <!--                PopUpShow();-->
+            <!--            </script>-->
+            <div class="popup-wrapper">
+                <div class="half">
+                    <p hidden value=""></p>
+                    <label class="popup-label-title">Course <span style="color:#A30014">*</span></label>
+                    <select class="form_input" th:name="academicCourse" th:id="academicCourse"
+                            th:field="*{courses}">
+                        <option class="short" data-limit="23" th:value="*{courses}"></option>
+                        <option class="short" data-limit="23" th:each="course : ${courses}" th:value="${course.id}"
+                                th:text="${course.getName()}"></option>
+                    </select>
+                    <div class="error"></div>
+                </div>
+                <div class="half2"></div>
+                <div name="btn-div">
+                    <button type="submit" class="button-save" id="submit"><b>Save</b></button>
+                </div>
             </div>
-            <div class="half2"></div>
-            <div name="btn-div">
-                <button type="submit" class="button-save" id="submit"><b>Save</b></button>
-            </div>
-        </div>
-                    </form>
+        </form>
     </div>
 </div>
 </body>

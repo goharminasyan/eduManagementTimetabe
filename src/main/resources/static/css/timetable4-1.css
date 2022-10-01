@@ -142,7 +142,7 @@ body {
     margin: 0;
     padding: 0px;
     display: flex;
-    margin-top: 35px;
+    margin-top: 23px;
 }
 
 .dates{
@@ -406,8 +406,8 @@ form {
 }
 
 .form_input {
-    margin-top: 4px;
-    margin-bottom: 4px;
+    margin-top: 6px;
+    margin-bottom: 6px;
     display: block;
     width: 100%;
     border-radius: 1px;
