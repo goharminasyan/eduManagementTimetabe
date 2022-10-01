@@ -1,15 +1,18 @@
 package com.epam.edumanagementtimetabe.rest.api;
 
+import com.epam.edumanagementtimetabe.model.dto.AcademicCourseDto;
 import com.epam.edumanagementtimetabe.model.entity.AcademicCourse;
 import com.epam.edumanagementtimetabe.rest.service.AcademicCourseService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,8 +21,8 @@ import java.util.Map;
 public class TimetableController {
 
     Map<Integer, AcademicCourse> monday = new HashMap<>();
-
     Integer key = 0;
+
     AcademicCourseService academicCourseService;
 
     public TimetableController(AcademicCourseService academicCourseService) {
@@ -30,11 +33,13 @@ public class TimetableController {
     @GetMapping("/creation")
     public String get4_1(Model model) {
         model.addAttribute("courses", academicCourseService.findAll());
+        model.addAttribute("academicCourse", new AcademicCourse());
         return "timetable4-1";
     }
 
     @PostMapping("/creation")
-    public String post4_1(Model model, AcademicCourse course) {
+    public String post4_1(@ModelAttribute("academicCourse") @Valid AcademicCourse course,
+                          BindingResult result, Model model) {
 
         monday.put(++key, course);
         model.addAttribute("courses", academicCourseService.findAll());

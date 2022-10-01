@@ -99,11 +99,14 @@
                         <div class="dayHeader"><a>Monday</a></div>
                         <div class="lessons">
                             <div class="single_lesson_wrapper">
-                                <div class="single_item" th:each="item : ${lessons}">
-                                    <div class="btn"><label for="show" class="close-btn" title="close">×</label>
-                                    </div>
-                                    <div class="title"><a th:text="${item.key}" th:value="${item.value}">Name</a></div>
+
+
+                                <div class="single_item" th:each="lesson : ${lessons}">
+                                    <p th:each="item : ${lesson.value}"> </p>
+                                    <div class="btn"><label for="show" class="close-btn" title="close">×</label> </div>
+                                    <div class="title" ><a th:text="${item.getName()}">Name</a></div>
                                 </div>
+
 
 
                             </div>
