@@ -1,9 +1,6 @@
 package com.epam.edumanagementtimetabe.rest.api;
 
-import com.epam.edumanagementtimetabe.model.dto.AcademicCourseDto;
-import com.epam.edumanagementtimetabe.model.entity.AcademicCourse;
-import com.epam.edumanagementtimetabe.model.entity.CourseTable;
-import com.epam.edumanagementtimetabe.model.entity.Timetable;
+import com.epam.edumanagementtimetabe.model.entity.CourseForTimetable;
 import com.epam.edumanagementtimetabe.rest.service.AcademicCourseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.security.SecureRandom;
 import java.util.*;
 
 @Controller
 @RequestMapping("/timetable")
 public class TimetableController {
 
-    Map<Integer,CourseTable> monday = new LinkedHashMap<>();
+    Map<Integer, CourseForTimetable> monday = new LinkedHashMap<>();
     Integer key =0;
 
     AcademicCourseService academicCourseService;
@@ -35,13 +31,13 @@ public class TimetableController {
     @GetMapping("/creation")
     public String get4_1(Model model) {
         model.addAttribute("courses", academicCourseService.findAll());
-        model.addAttribute("table", new CourseTable());
+        model.addAttribute("table", new CourseForTimetable());
         model.addAttribute("lessons", monday);
         return "timetable4-1";
     }
 
     @PostMapping("/creation")
-    public String post4_1(@ModelAttribute("table") @Valid CourseTable table,
+    public String post4_1(@ModelAttribute("table") @Valid CourseForTimetable table,
                           BindingResult result, Model model) {
         monday.put(++key, table);
         model.addAttribute("courses", academicCourseService.findAll());

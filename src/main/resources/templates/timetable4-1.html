@@ -100,9 +100,8 @@
                         <div class="lessons">
                             <div class="single_lesson_wrapper">
 
-
                                 <div class="single_item" th:each="lesson : ${lessons.values()}">
-<!--                                    <p th:each="item : ${lesson.value}"> </p>-->
+<!--                                    <p th:each="lesson : ${lessons.values()}"> </p>-->
                                     <div class="btn"><label class="close-btn" title="close">×</label> </div>
                                     <div class="title" ><a th:text="${lesson.getAcademicCourse().getName()}">Name</a></div>
                                 </div>
@@ -115,22 +114,16 @@
                     </div>
 
                     <div class="dayOfWeek">
-                        <div class="dayHeader" id="tuesday"><a>Tuesday</a></div>
-                        <div class="lessons">
-                            <div class="single_item">
-                                <div class="btn"><label class="close-btn" title="close">×</label></div>
-                            </div>
-                        </div>
+                        <div class="dayHeader"><a>Tuesday</a></div>
+                        <div class="lessons"></div>
                         <div class="add">
-                            <button type="button" onclick="PopUpShowTuesday()" class="plus" value="Tuesday"><b>+</b></button>
+                            <button type="button" onclick="PopUpShow()" class="plus" value="Wednesday"><b>+</b></button>
                         </div>
                     </div>
 
                     <div class="dayOfWeek">
                         <div class="dayHeader"><a>Wednesday</a></div>
-                        <div class="lessons">
-
-                        </div>
+                        <div class="lessons"></div>
                         <div class="add">
                             <button type="button" onclick="PopUpShow()" class="plus" value="Wednesday"><b>+</b></button>
                         </div>
