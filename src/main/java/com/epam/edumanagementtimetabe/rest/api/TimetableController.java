@@ -1,54 +1,49 @@
 package com.epam.edumanagementtimetabe.rest.api;
 
+import com.epam.edumanagementtimetabe.model.entity.AcademicClass;
 import com.epam.edumanagementtimetabe.model.entity.CourseForTimetable;
+import com.epam.edumanagementtimetabe.rest.service.AcademicClassService;
 import com.epam.edumanagementtimetabe.rest.service.AcademicCourseService;
+import com.epam.edumanagementtimetabe.rest.service.CoursesForTimetableService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.validation.Valid;
-import java.util.*;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/timetable")
 public class TimetableController {
 
-    Map<Integer, CourseForTimetable> monday = new LinkedHashMap<>();
-    Integer key =0;
+    private final AcademicCourseService academicCourseService;
+    private final CoursesForTimetableService courseService;
+    private final AcademicClassService academicClassService;
 
-    AcademicCourseService academicCourseService;
-
-    public TimetableController(AcademicCourseService academicCourseService) {
+    public TimetableController(AcademicCourseService academicCourseService, CoursesForTimetableService courseService, AcademicClassService academicClassService) {
         this.academicCourseService = academicCourseService;
+        this.courseService = courseService;
+        this.academicClassService = academicClassService;
     }
-
 
     @GetMapping("/creation")
     public String get4_1(Model model) {
         model.addAttribute("courses", academicCourseService.findAll());
-        model.addAttribute("table", new CourseForTimetable());
-        model.addAttribute("lessons", monday);
+        model.addAttribute("courseForTable", new CourseForTimetable());
+        model.addAttribute("lessonsOfMonday",courseService.getCoursesForMonday());
         return "timetable4-1";
     }
 
     @PostMapping("/creation")
-    public String post4_1(@ModelAttribute("table") @Valid CourseForTimetable table,
-                          BindingResult result, Model model) {
-        monday.put(++key, table);
+    public String post4_1(@ModelAttribute("courseForTable") CourseForTimetable courseForTimetable,
+                          @RequestParam("nameOfDay") String nameOfDay, @RequestParam("class") String thisClass, BindingResult result, Model model) {
+
+        AcademicClass byName = academicClassService.findByName(thisClass);
+        courseForTimetable.setDayOfWeek(nameOfDay);
+        courseForTimetable.setAcademicClass(byName);
+        courseService.create(courseForTimetable);
         model.addAttribute("courses", academicCourseService.findAll());
-        model.addAttribute("lessons", monday);
+        model.addAttribute("lessonsOfMonday",courseService.getCoursesForMonday());
         return "timetable4-1";
-    }
-
-
-    @GetMapping("/success")
-    public String get4_1_1() {
-        return "timetable4-1-1";
     }
 
     @GetMapping

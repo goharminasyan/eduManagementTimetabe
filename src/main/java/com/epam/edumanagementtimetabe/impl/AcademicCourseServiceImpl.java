@@ -4,6 +4,7 @@ import com.epam.edumanagementtimetabe.mapper.AcademicCourseMapper;
 import com.epam.edumanagementtimetabe.model.dto.AcademicCourseDto;
 import com.epam.edumanagementtimetabe.model.entity.AcademicCourse;
 import com.epam.edumanagementtimetabe.rest.repository.AcademicCourseRepository;
+import com.epam.edumanagementtimetabe.rest.repository.CourseForTimetableRepository;
 import com.epam.edumanagementtimetabe.rest.service.AcademicCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,4 +40,6 @@ public class AcademicCourseServiceImpl implements AcademicCourseService {
         List<AcademicCourse> academicCourses = academicCourseRepository.findAll();
         return AcademicCourseMapper.toListOfAcademicCourseDto(academicCourses);
     }
+
+
 }

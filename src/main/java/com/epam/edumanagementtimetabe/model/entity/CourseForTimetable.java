@@ -15,21 +15,11 @@ public class CourseForTimetable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
-    @JoinTable(
-            name="courses_table",
-            joinColumns = @JoinColumn( name="id"),
-            inverseJoinColumns = @JoinColumn( name="academic_course_id")
-    )
-    private List<AcademicCourse> academicCourse;
+    @OneToOne
+    private AcademicCourse academicCourse;
 
-    @OneToMany
-    @JoinTable(
-            name="courses_table",
-            joinColumns = @JoinColumn( name="id"),
-            inverseJoinColumns = @JoinColumn( name="academic_class_id")
-    )
-    private List<AcademicClass> academicClassSet;
+    @OneToOne
+    private AcademicClass academicClass;
 
     @NotBlank(message = "Please, fill the required fields")
     @Size(max = 50, message = "Symbols can't be more than 50")
@@ -38,10 +28,10 @@ public class CourseForTimetable {
     public CourseForTimetable() {
     }
 
-    public CourseForTimetable(Long id, List<AcademicCourse> academicCourse, List<AcademicClass> academicClassSet, String dayOfWeek) {
+    public CourseForTimetable(Long id, AcademicCourse academicCourse, AcademicClass academicClass, String dayOfWeek) {
         this.id = id;
         this.academicCourse = academicCourse;
-        this.academicClassSet = academicClassSet;
+        this.academicClass = academicClass;
         this.dayOfWeek = dayOfWeek;
     }
 
@@ -53,20 +43,20 @@ public class CourseForTimetable {
         this.id = id;
     }
 
-    public List<AcademicCourse> getAcademicCourse() {
+    public AcademicCourse getAcademicCourse() {
         return academicCourse;
     }
 
-    public void setAcademicCourse(List<AcademicCourse> academicCourse) {
+    public void setAcademicCourse(AcademicCourse academicCourse) {
         this.academicCourse = academicCourse;
     }
 
-    public List<AcademicClass> getAcademicClassSet() {
-        return academicClassSet;
+    public AcademicClass getAcademicClass() {
+        return academicClass;
     }
 
-    public void setAcademicClassSet(List<AcademicClass> academicClassSet) {
-        this.academicClassSet = academicClassSet;
+    public void setAcademicClass(AcademicClass academicClass) {
+        this.academicClass = academicClass;
     }
 
     public String getDayOfWeek() {
@@ -82,12 +72,12 @@ public class CourseForTimetable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CourseForTimetable that = (CourseForTimetable) o;
-        return Objects.equals(id, that.id) && Objects.equals(academicCourse, that.academicCourse) && Objects.equals(academicClassSet, that.academicClassSet) && Objects.equals(dayOfWeek, that.dayOfWeek);
+        return Objects.equals(id, that.id) && Objects.equals(academicCourse, that.academicCourse) && Objects.equals(academicClass, that.academicClass) && Objects.equals(dayOfWeek, that.dayOfWeek);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, academicCourse, academicClassSet, dayOfWeek);
+        return Objects.hash(id, academicCourse, academicClass, dayOfWeek);
     }
 
     @Override
@@ -95,7 +85,7 @@ public class CourseForTimetable {
         return "CourseForTimetable{" +
                 "id=" + id +
                 ", academicCourse=" + academicCourse +
-                ", academicClassSet=" + academicClassSet +
+                ", academicClass=" + academicClass +
                 ", dayOfWeek='" + dayOfWeek + '\'' +
                 '}';
     }

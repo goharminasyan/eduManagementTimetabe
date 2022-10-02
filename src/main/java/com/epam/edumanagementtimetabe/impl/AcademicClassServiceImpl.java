@@ -36,6 +36,11 @@ public class AcademicClassServiceImpl implements AcademicClassService {
     }
 
     @Override
+    public AcademicClass findByName(String name) {
+        return academicClassRepository.findAcademicClassByClassNumber(name);
+    }
+
+    @Override
     public List<AcademicClassDto> findAll() {
         List<AcademicClass> academicClassList = academicClassRepository.findAll();
         return AcademicClassMapper.academicClassDtoList(academicClassList);

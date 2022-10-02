@@ -13,6 +13,7 @@ public interface AcademicClassService {
 
     AcademicClassDto getById(Long id);
 
+    AcademicClass findByName(String name);
 }
 
 
