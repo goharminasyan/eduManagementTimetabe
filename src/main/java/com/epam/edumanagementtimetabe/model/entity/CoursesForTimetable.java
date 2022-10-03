@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,20 +15,24 @@ public class CoursesForTimetable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    private AcademicCourse academicCourse;
+    @ManyToMany
+    @JoinTable(name="courses_table",
+            joinColumns = @JoinColumn( name="id"),
+            inverseJoinColumns = @JoinColumn( name="academic_course_id"))
+    private List<AcademicCourse> academicCourse;
 
-    @OneToOne
-    private AcademicClass academicClass;
+    @ManyToMany
+    @JoinTable(name="courses_table",
+            joinColumns = @JoinColumn( name="id"),
+            inverseJoinColumns = @JoinColumn( name="academic_class_id"))
+    private List<AcademicClass> academicClass;
 
-    @NotBlank(message = "Please, fill the required fields")
-    @Size(max = 50, message = "Symbols can't be more than 50")
     private String dayOfWeek;
 
     public CoursesForTimetable() {
     }
 
-    public CoursesForTimetable(Long id, AcademicCourse academicCourse, AcademicClass academicClass, String dayOfWeek) {
+    public CoursesForTimetable(Long id, List<AcademicCourse> academicCourse, List<AcademicClass> academicClass, String dayOfWeek) {
         this.id = id;
         this.academicCourse = academicCourse;
         this.academicClass = academicClass;
@@ -42,19 +47,19 @@ public class CoursesForTimetable {
         this.id = id;
     }
 
-    public AcademicCourse getAcademicCourse() {
+    public List<AcademicCourse> getAcademicCourse() {
         return academicCourse;
     }
 
-    public void setAcademicCourse(AcademicCourse academicCourse) {
+    public void setAcademicCourse(List<AcademicCourse> academicCourse) {
         this.academicCourse = academicCourse;
     }
 
-    public AcademicClass getAcademicClass() {
+    public List<AcademicClass> getAcademicClass() {
         return academicClass;
     }
 
-    public void setAcademicClass(AcademicClass academicClass) {
+    public void setAcademicClass(List<AcademicClass> academicClass) {
         this.academicClass = academicClass;
     }
 
@@ -84,7 +89,7 @@ public class CoursesForTimetable {
         return "CoursesForTimetable{" +
                 "id=" + id +
                 ", academicCourse=" + academicCourse +
-                ", academicClass=" + academicClass +
+                ", academicClassSet=" + academicClass +
                 ", dayOfWeek='" + dayOfWeek + '\'' +
                 '}';
     }

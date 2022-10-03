@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "academic_class")
@@ -19,9 +19,13 @@ public class AcademicClass {
     @NotBlank(message = "Please, fill the required fields")
     private String classNumber;
 
-    public AcademicClass(Long id, String classNumber) {
+    @ManyToMany( fetch = FetchType.EAGER)
+    private List<CoursesForTimetable> coursesForTimetableList = new ArrayList<>();
+
+    public AcademicClass(Long id, String classNumber, List<CoursesForTimetable> coursesForTimetableList) {
         this.id = id;
         this.classNumber = classNumber;
+        this.coursesForTimetableList = coursesForTimetableList;
     }
 
     public AcademicClass() {
@@ -41,6 +45,14 @@ public class AcademicClass {
 
     public String getClassNumber() {
         return classNumber;
+    }
+
+    public List<CoursesForTimetable> getCoursesForTimetableList() {
+        return coursesForTimetableList;
+    }
+
+    public void setCoursesForTimetableList(List<CoursesForTimetable> coursesForTimetableList) {
+        this.coursesForTimetableList = coursesForTimetableList;
     }
 
     @Override

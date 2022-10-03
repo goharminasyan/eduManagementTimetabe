@@ -1,5 +1,6 @@
 package com.epam.edumanagementtimetabe.rest.api;
 
+import com.epam.edumanagementtimetabe.model.dto.CoursesForTimetableDto;
 import com.epam.edumanagementtimetabe.model.entity.AcademicClass;
 import com.epam.edumanagementtimetabe.model.entity.CoursesForTimetable;
 import com.epam.edumanagementtimetabe.rest.service.AcademicClassService;
@@ -28,20 +29,20 @@ public class TimetableController {
     @GetMapping("/creation")
     public String get4_1(Model model) {
         model.addAttribute("courses", academicCourseService.findAll());
-        model.addAttribute("courseForTable", new CoursesForTimetable());
+        model.addAttribute("courseForTable", new CoursesForTimetableDto());
         model.addAttribute("lessonsOfMonday",courseService.getCoursesForMonday());
         return "timetable4-1";
     }
 
     @PostMapping("/creation")
-    public String post4_1(@ModelAttribute("courseForTable") CoursesForTimetable coursesForTimetable,
+    public String post4_1(@ModelAttribute("courseForTable") CoursesForTimetableDto coursesForTimetableDto,
                           @RequestParam("nameOfDay") String nameOfDay, @RequestParam("class") String thisClass, BindingResult result, Model model) {
 
-        AcademicClass byName = academicClassService.findByName(thisClass);
-        coursesForTimetable.setDayOfWeek(nameOfDay);
-        coursesForTimetable.setAcademicClass(byName);
-        courseService.create(coursesForTimetable);
         model.addAttribute("courses", academicCourseService.findAll());
+        AcademicClass byName = academicClassService.findByName(thisClass);
+        coursesForTimetableDto.setDayOfWeek(nameOfDay);
+        coursesForTimetableDto.setAcademicClass(byName);
+        courseService.create(coursesForTimetableDto);
         model.addAttribute("lessonsOfMonday",courseService.getCoursesForMonday());
         return "timetable4-1";
     }

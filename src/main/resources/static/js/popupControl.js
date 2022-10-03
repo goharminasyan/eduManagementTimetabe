@@ -11,7 +11,8 @@ function PopUpShowMonday() {
 
 function PopUpShowTuesday() {
     $("#popup-container").show();
-    document.getElementById("demo").innerHTML = document.getElementById("tuesday").getElementsByTagName("a").item(0).text;;
+    document.getElementById("demo").innerHTML = document.getElementById("tuesday").
+    getElementsByTagName("a").item(0).text;;
     $("#main-wrapper").css("-webkit-filter", "blur(10px)");
     $("#header").css("-webkit-filter", "blur(10px)");
     $("#main-wrapper").css("pointer-events", "none");

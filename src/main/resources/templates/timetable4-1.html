@@ -117,7 +117,7 @@
                         <div class="dayHeader"><a>Tuesday</a></div>
                         <div class="lessons"></div>
                         <div class="add">
-                            <button type="button" onclick="PopUpShow()" class="plus" value="Wednesday"><b>+</b></button>
+                            <button type="button" onclick="PopUpShowTuesday()" class="plus" value="Tuesday"><b>+</b></button>
                         </div>
                     </div>
 
@@ -125,7 +125,7 @@
                         <div class="dayHeader"><a>Wednesday</a></div>
                         <div class="lessons"></div>
                         <div class="add">
-                            <button type="button" onclick="PopUpShow()" class="plus" value="Wednesday"><b>+</b></button>
+                            <button type="button" onclick="PopUpShowTuesday()" class="plus" value="Wednesday"><b>+</b></button>
                         </div>
                     </div>
 
@@ -181,7 +181,7 @@
             <div class="popup-wrapper">
                 <div class="half">
                     <input id="demo" type="hidden" name="nameOfDay" th:value="Monday"/>
-                    <input id="class" type="hidden" name="class" th:value="7G"/>
+                    <input id="class" type="hidden" name="class" th:value="5A"/>
                     <label class="popup-label-title">Course <span style="color:#A30014">*</span></label>
                     <select class="form_input" th:name="academicCourse" th:id="academicCourse">
                         <option class="short" data-limit="23" th:value="*{courses}"></option>

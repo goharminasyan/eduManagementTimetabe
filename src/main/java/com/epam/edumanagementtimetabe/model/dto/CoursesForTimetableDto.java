@@ -9,6 +9,8 @@ import java.util.Objects;
 
 public class CoursesForTimetableDto {
 
+    private Long id;
+
     @NotBlank(message = "Please, fill the required fields")
     private AcademicCourse academicCourse;
     @NotBlank(message = "Please, fill the required fields")
@@ -25,6 +27,14 @@ public class CoursesForTimetableDto {
         this.academicCourse = academicCourse;
         this.academicClass = academicClass;
         this.dayOfWeek = dayOfWeek;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public AcademicCourse getAcademicCourse() {
