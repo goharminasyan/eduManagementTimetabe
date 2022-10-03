@@ -1,7 +1,6 @@
 package com.epam.edumanagementtimetabe.impl;
 
-import com.epam.edumanagementtimetabe.model.entity.AcademicCourse;
-import com.epam.edumanagementtimetabe.model.entity.CourseForTimetable;
+import com.epam.edumanagementtimetabe.model.entity.CoursesForTimetable;
 import com.epam.edumanagementtimetabe.rest.repository.CourseForTimetableRepository;
 import com.epam.edumanagementtimetabe.rest.service.CoursesForTimetableService;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,7 @@ public class CoursesForTimetableServiceImpl implements CoursesForTimetableServic
     }
 
     @Override
-    public void create(CourseForTimetable courseForTimetable) {
-        repository.save(courseForTimetable);
+    public void create(CoursesForTimetable coursesForTimetable) {
+        repository.save(coursesForTimetable);
     }
 }

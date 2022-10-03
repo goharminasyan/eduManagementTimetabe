@@ -4,12 +4,11 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "courses_table")
-public class CourseForTimetable {
+public class CoursesForTimetable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +24,10 @@ public class CourseForTimetable {
     @Size(max = 50, message = "Symbols can't be more than 50")
     private String dayOfWeek;
 
-    public CourseForTimetable() {
+    public CoursesForTimetable() {
     }
 
-    public CourseForTimetable(Long id, AcademicCourse academicCourse, AcademicClass academicClass, String dayOfWeek) {
+    public CoursesForTimetable(Long id, AcademicCourse academicCourse, AcademicClass academicClass, String dayOfWeek) {
         this.id = id;
         this.academicCourse = academicCourse;
         this.academicClass = academicClass;
@@ -71,7 +70,7 @@ public class CourseForTimetable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CourseForTimetable that = (CourseForTimetable) o;
+        CoursesForTimetable that = (CoursesForTimetable) o;
         return Objects.equals(id, that.id) && Objects.equals(academicCourse, that.academicCourse) && Objects.equals(academicClass, that.academicClass) && Objects.equals(dayOfWeek, that.dayOfWeek);
     }
 
@@ -82,7 +81,7 @@ public class CourseForTimetable {
 
     @Override
     public String toString() {
-        return "CourseForTimetable{" +
+        return "CoursesForTimetable{" +
                 "id=" + id +
                 ", academicCourse=" + academicCourse +
                 ", academicClass=" + academicClass +
