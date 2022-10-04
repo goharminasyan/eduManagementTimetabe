@@ -31,9 +31,7 @@ public class AcademicClass {
     public AcademicClass() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+
 
     public void setClassNumber(String classNumber) {
         this.classNumber = classNumber;

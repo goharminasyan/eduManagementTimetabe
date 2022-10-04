@@ -12,6 +12,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
+
 @Controller
 @RequestMapping("/timetable")
 public class TimetableController {
@@ -47,12 +51,12 @@ public class TimetableController {
         return "timetable4-1";
     }
 
+
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id, Model model) {
         if (id != null) {
             courseService.delete(id);
         }
-        model.addAttribute("lessonsOfMonday",courseService.getCoursesForMonday("Monday"));
         return "timetable4-1";
     }
 

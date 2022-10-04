@@ -19,4 +19,9 @@ public interface CourseForTimetableRepository extends JpaRepository<CoursesForTi
     @Query(nativeQuery = true, value = "insert into courses_table(day_of_week, academic_course_id, academic_class_id) " +
             "values(?1,?2,?3)")
     void create(String dayOfWeek, Long academicCourseId, Long academicClassId);
+
+    @Modifying
+    @Transactional
+    @Query(nativeQuery = true, value = "DELETE FROM courses_table WHERE id =(?1);")
+    void delete(Long id);
 }

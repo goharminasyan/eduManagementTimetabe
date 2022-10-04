@@ -13,7 +13,7 @@ public class CoursesForTimetableMapper {
 
     public static CoursesForTimetable toCoursesForTimetable(CoursesForTimetableDto coursesForTimetableDto) {
         CoursesForTimetable coursesForTimetable = new CoursesForTimetable();
-        coursesForTimetable.setId(coursesForTimetableDto.getId());
+//        coursesForTimetable.setId(coursesForTimetableDto.getId());
         coursesForTimetable.setAcademicCourse(List.of(coursesForTimetableDto.getAcademicCourse()));
         coursesForTimetable.setAcademicClass(List.of(coursesForTimetableDto.getAcademicClass()));
         coursesForTimetable.setDayOfWeek(coursesForTimetableDto.getDayOfWeek());

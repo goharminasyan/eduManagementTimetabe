@@ -6,6 +6,7 @@ import com.epam.edumanagementtimetabe.model.entity.CoursesForTimetable;
 import com.epam.edumanagementtimetabe.rest.repository.AcademicClassRepository;
 import com.epam.edumanagementtimetabe.rest.repository.CourseForTimetableRepository;
 import com.epam.edumanagementtimetabe.rest.service.CoursesForTimetableService;
+import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,10 +33,9 @@ public class CoursesForTimetableServiceImpl implements CoursesForTimetableServic
         repository.create(coursesForTimetableDto.getDayOfWeek(), coursesForTimetableDto.getAcademicCourse().getId(), coursesForTimetableDto.getAcademicClass().getId());
     }
 
-    @Transactional
+
     @Override
     public void delete(Long id) {
-        CoursesForTimetable coursesForTimetable = repository.findById(id).get();
-        repository.deleteById(coursesForTimetable.getId());
+        repository.deleteById(id);
     }
 }

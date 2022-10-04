@@ -9,7 +9,7 @@ import java.util.List;
 public class AcademicClassMapper {
     public static AcademicClass ToAcademicClass(AcademicClassDto academicClassDto) {
         AcademicClass academicClass = new AcademicClass();
-        academicClass.setId(academicClassDto.getId());
+//        academicClass.setId(academicClassDto.getId());
         academicClass.setClassNumber(academicClassDto.getClassNumber());
 
         return academicClass;

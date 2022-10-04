@@ -1,6 +1,10 @@
 package com.epam.edumanagementtimetabe.model.entity;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.context.annotation.Scope;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -15,13 +19,13 @@ public class CoursesForTimetable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="courses_table",
             joinColumns = @JoinColumn( name="id"),
             inverseJoinColumns = @JoinColumn( name="academic_course_id"))
     private List<AcademicCourse> academicCourse;
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="courses_table",
             joinColumns = @JoinColumn( name="id"),
             inverseJoinColumns = @JoinColumn( name="academic_class_id"))
@@ -32,8 +36,7 @@ public class CoursesForTimetable {
     public CoursesForTimetable() {
     }
 
-    public CoursesForTimetable(Long id, List<AcademicCourse> academicCourse, List<AcademicClass> academicClass, String dayOfWeek) {
-        this.id = id;
+    public CoursesForTimetable( List<AcademicCourse> academicCourse, List<AcademicClass> academicClass, String dayOfWeek) {
         this.academicCourse = academicCourse;
         this.academicClass = academicClass;
         this.dayOfWeek = dayOfWeek;
@@ -43,9 +46,7 @@ public class CoursesForTimetable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+
 
     public List<AcademicCourse> getAcademicCourse() {
         return academicCourse;
