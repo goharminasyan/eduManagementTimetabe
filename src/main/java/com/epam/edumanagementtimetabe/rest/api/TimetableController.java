@@ -30,7 +30,7 @@ public class TimetableController {
     public String get4_1(Model model) {
         model.addAttribute("courses", academicCourseService.findAll());
         model.addAttribute("courseForTable", new CoursesForTimetableDto());
-        model.addAttribute("lessonsOfMonday",courseService.getCoursesForMonday());
+        model.addAttribute("lessonsOfMonday",courseService.getCoursesForMonday("Monday"));
         return "timetable4-1";
     }
 
@@ -43,7 +43,16 @@ public class TimetableController {
         coursesForTimetableDto.setDayOfWeek(nameOfDay);
         coursesForTimetableDto.setAcademicClass(byName);
         courseService.create(coursesForTimetableDto);
-        model.addAttribute("lessonsOfMonday",courseService.getCoursesForMonday());
+        model.addAttribute("lessonsOfMonday",courseService.getCoursesForMonday("Monday"));
+        return "timetable4-1";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Long id, Model model) {
+        if (id != null) {
+            courseService.delete(id);
+        }
+        model.addAttribute("lessonsOfMonday",courseService.getCoursesForMonday("Monday"));
         return "timetable4-1";
     }
 
