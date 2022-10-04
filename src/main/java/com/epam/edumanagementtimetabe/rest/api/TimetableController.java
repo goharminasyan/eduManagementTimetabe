@@ -46,7 +46,7 @@ public class TimetableController {
         model.addAttribute("courses", academicCourseService.findAll());
         model.addAttribute("courseForTable", new CoursesForTimetableDto());
         model.addAttribute("timetable", new TimetableDto());
-        model.addAttribute("lessonsOfMonday", courseService.getCoursesForMonday());
+        model.addAttribute("lessonsOfMonday", courseService.getCoursesForMonday("Monday"));
         return "timetable4-1";
     }
 
@@ -56,7 +56,7 @@ public class TimetableController {
         AcademicClass byName = academicClassService.findByName(thisClass);
         timetableDto.setAcademicClass(byName);
         timetableService.create(timetableDto);
-        model.addAttribute("lessonsOfMonday", courseService.getCoursesForMonday());
+        model.addAttribute("lessonsOfMonday", courseService.getCoursesForMonday("Monday"));
         return "redirect:/timetable";
     }
 
@@ -70,8 +70,7 @@ public class TimetableController {
         coursesForTimetableDto.setDayOfWeek(nameOfDay);
         coursesForTimetableDto.setAcademicClass(byName);
         courseService.create(coursesForTimetableDto);
-        model.addAttribute("lessonsOfMonday", courseService.getCoursesForMonday());
-        model.addAttribute("lessonsOfMonday",courseService.getCoursesForMonday("Monday"));
+        model.addAttribute("lessonsOfMonday", courseService.getCoursesForMonday("Monday"));
         return "timetable4-1";
     }
 
@@ -82,11 +81,5 @@ public class TimetableController {
         }
         model.addAttribute("lessonsOfMonday",courseService.getCoursesForMonday("Monday"));
         return "timetable4-1";
-    }
-
-    @GetMapping
-    public String get4(ModelMap modelMap) {
-        modelMap.addAttribute("timetable", "timetable");
-        return "timetable4";
     }
 }
