@@ -69,27 +69,32 @@
         </div>
 
         <div class="main-down">
-            <form class="form-timetable" th:method="GET" th:action="@{/timetable/creation}">
+            <form class="form-timetable" th:method="POST" th:action="@{/timetable}" th:object="${timetable}">
                 <div class="dates_and_create">
                     <div class="dates">
                         <div class="date_half">
                             <label>Start date <span style="color:#A30014">* </span></label>
-                            <input class="form_input" placeholder="Date pick"
+                            <input class="form_input" name="startDate" placeholder="Date pick"
                                    th:type="text"
                                    th:name="startDate"
+                                   th:value="*{startDate}"
+                                   th:field="*{startDate}"
                                    th:id="startDate"/>
                         </div>
                         <div class="date_half">
                             <label>End date <span style="color:#A30014">* </span></label>
                             <div class="input_left">
-                                <input class="form_input" placeholder="Date pick"
+                                <input class="form_input" name="endDate" placeholder="Date pick"
                                        th:type="text"
                                        th:name="endDate"
+                                       th:value="*{endDate}"
+                                       th:field="*{endDate}"
                                        th:id="endDate"/>
                             </div>
                         </div>
                     </div>
                     <div class="create">
+                        <input id="class" type="hidden" name="class" th:value="5A"/>
                         <button type="submit" class="button"><b>Create Timetable</b></button>
                     </div>
                 </div>
@@ -99,10 +104,9 @@
                         <div class="dayHeader" id="monday" th:value="monday"><a>Monday</a></div>
                         <div class="lessons">
                             <div class="single_lesson_wrapper">
-
                                 <div class="single_item" th:each="lesson : ${lessonsOfMonday}">
-<!--                                    <p th:each="lesson : ${lessons.values()}"> </p>-->
-                                    <div class="btn"><label class="close-btn" title="close">×</label> </div>
+                                    <div class="btn"><button type="submit" class="close-btn" title="close" th:value="${lesson}"
+                                                             name="delete" id="delete" onclick="deleteItem()">×</button></div>
                                     <div class="title" ><a th:text="${lesson}">Name</a></div>
                                 </div>
 
@@ -181,7 +185,7 @@
             <div class="popup-wrapper">
                 <div class="half">
                     <input id="demo" type="hidden" name="nameOfDay" th:value="Monday"/>
-                    <input id="class" type="hidden" name="class" th:value="5A"/>
+                    <input  type="hidden" name="class" th:value="5A"/>
                     <label class="popup-label-title">Course <span style="color:#A30014">*</span></label>
                     <select class="form_input" th:name="academicCourse" th:id="academicCourse">
                         <option class="short" data-limit="23" th:value="*{courses}"></option>

@@ -17,13 +17,13 @@ public class Timetable {
     private Long id;
 
     @Column(name = "start_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NotNull(message = "Please, fill the required fields")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @NotNull(message = "Please, select the date")
     private LocalDate startDate;
 
     @Column(name = "end_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NotNull(message = "Please, fill the required fields")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @NotNull(message = "Please, select the date")
     private LocalDate endDate;
 
     @OneToOne
