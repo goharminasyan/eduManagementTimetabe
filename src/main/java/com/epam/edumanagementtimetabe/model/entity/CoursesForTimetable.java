@@ -15,13 +15,13 @@ public class CoursesForTimetable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(name="courses_table",
             joinColumns = @JoinColumn( name="id"),
             inverseJoinColumns = @JoinColumn( name="academic_course_id"))
     private List<AcademicCourse> academicCourse;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(name="courses_table",
             joinColumns = @JoinColumn( name="id"),
             inverseJoinColumns = @JoinColumn( name="academic_class_id"))

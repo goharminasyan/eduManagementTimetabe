@@ -12,10 +12,7 @@ import java.util.List;
 @Repository
 public interface CourseForTimetableRepository extends JpaRepository<CoursesForTimetable, Long> {
 
-    @Query(nativeQuery = true,
-            value = "SELECT courses_table.academic_course_id " +
-                    "FROM courses_table WHERE courses_table.day_of_week ='Monday';")
-    List<Long> getCoursesForMonday();
+    List<CoursesForTimetable> findByDayOfWeek(String dayOfWeek);
 
     @Transactional
     @Modifying(clearAutomatically = true)
