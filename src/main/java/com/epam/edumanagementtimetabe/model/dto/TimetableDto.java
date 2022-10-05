@@ -2,31 +2,36 @@ package com.epam.edumanagementtimetabe.model.dto;
 
 import com.epam.edumanagementtimetabe.model.entity.AcademicClass;
 import com.epam.edumanagementtimetabe.model.entity.AcademicCourse;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.*;
 
 public class TimetableDto {
-
     private Long id;
 
-    @Enumerated(value = EnumType.STRING)
-    private DayOfWeek day;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @NotNull(message = "Please, select the date")
+    private LocalDate startDate;
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @NotNull(message = "Please, select the date")
+    private LocalDate endDate;
 
     private AcademicClass academicClass;
-
-    private List<AcademicCourse> course;
 
     public TimetableDto() {
     }
 
-    public TimetableDto(Long id, DayOfWeek day, AcademicClass academicClass, List<AcademicCourse> course) {
+    public TimetableDto(Long id, LocalDate startDate, LocalDate endDate, AcademicClass academicClass) {
         this.id = id;
-        this.day = day;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.academicClass = academicClass;
-        this.course = course;
     }
 
     public Long getId() {
@@ -37,12 +42,20 @@ public class TimetableDto {
         this.id = id;
     }
 
-    public DayOfWeek getDay() {
-        return day;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setDay(DayOfWeek day) {
-        this.day = day;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public AcademicClass getAcademicClass() {
@@ -53,34 +66,26 @@ public class TimetableDto {
         this.academicClass = academicClass;
     }
 
-    public List<AcademicCourse> getCourse() {
-        return course;
-    }
-
-    public void setCourse(List<AcademicCourse> course) {
-        this.course = course;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TimetableDto that = (TimetableDto) o;
-        return Objects.equals(id, that.id) && day == that.day && Objects.equals(academicClass, that.academicClass) && Objects.equals(course, that.course);
+        return Objects.equals(id, that.id) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate) && Objects.equals(academicClass, that.academicClass);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, day, academicClass, course);
+        return Objects.hash(id, startDate, endDate, academicClass);
     }
 
     @Override
     public String toString() {
         return "TimetableDto{" +
                 "id=" + id +
-                ", day=" + day +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
                 ", academicClass=" + academicClass +
-                ", course=" + course +
                 '}';
     }
 }

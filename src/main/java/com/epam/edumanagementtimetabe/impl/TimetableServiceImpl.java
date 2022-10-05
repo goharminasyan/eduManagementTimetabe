@@ -1,5 +1,7 @@
 package com.epam.edumanagementtimetabe.impl;
 
+import com.epam.edumanagementtimetabe.mapper.TimetableMapper;
+import com.epam.edumanagementtimetabe.model.dto.TimetableDto;
 import com.epam.edumanagementtimetabe.model.entity.Timetable;
 import com.epam.edumanagementtimetabe.rest.repository.TimetableRepository;
 import com.epam.edumanagementtimetabe.rest.service.TimetableService;
@@ -22,8 +24,8 @@ public class TimetableServiceImpl implements TimetableService {
     }
 
     @Override
-    public void create(Timetable timetable) {
-        timetableRepository.save(timetable);
+    public void create(TimetableDto timetableDto) {
+        timetableRepository.save(TimetableMapper.toTimetable(timetableDto));
     }
 
     @Override
