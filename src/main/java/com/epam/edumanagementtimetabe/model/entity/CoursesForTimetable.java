@@ -1,9 +1,11 @@
 package com.epam.edumanagementtimetabe.model.entity;
 
-import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,25 +17,23 @@ public class CoursesForTimetable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
-    @JoinTable(name="courses_table",
-            joinColumns = @JoinColumn( name="id"),
-            inverseJoinColumns = @JoinColumn( name="academic_course_id"))
+    @ManyToMany
+    @JoinTable(name = "courses_table", joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "academic_course_id"))
     private List<AcademicCourse> academicCourse;
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
-    @JoinTable(name="courses_table",
-            joinColumns = @JoinColumn( name="id"),
-            inverseJoinColumns = @JoinColumn( name="academic_class_id"))
+    @ManyToMany
+    @JoinTable(name = "courses_table", joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "academic_class_id"))
     private List<AcademicClass> academicClass;
 
     private String dayOfWeek;
 
+
     public CoursesForTimetable() {
     }
 
-    public CoursesForTimetable(Long id, List<AcademicCourse> academicCourse, List<AcademicClass> academicClass, String dayOfWeek) {
-        this.id = id;
+    public CoursesForTimetable( List<AcademicCourse> academicCourse, List<AcademicClass> academicClass, String dayOfWeek) {
         this.academicCourse = academicCourse;
         this.academicClass = academicClass;
         this.dayOfWeek = dayOfWeek;
@@ -43,9 +43,9 @@ public class CoursesForTimetable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public List<AcademicCourse> getAcademicCourse() {
         return academicCourse;

@@ -13,18 +13,18 @@ public class TimetableMapper {
     public static Timetable toTimetable(TimetableDto timetableDto) {
         Timetable timetable = new Timetable();
         timetable.setId(timetableDto.getId());
-//        timetable.setDay(timetableDto.getDay());
+        timetable.setStartDate(timetableDto.getStartDate());
+        timetable.setEndDate(timetableDto.getEndDate());
         timetable.setAcademicClass(timetableDto.getAcademicClass());
-//        timetable.setCourse(timetableDto.getCourse());
         return timetable;
     }
 
-    public static TimetableDto toDto(Timetable teacher) {
+    public static TimetableDto toDto(Timetable timetable) {
         TimetableDto timetableDto = new TimetableDto();
-        timetableDto.setId(teacher.getId());
-//        timetableDto.setCourse(teacher.getCourse());
-//        timetableDto.setDay(teacher.getDay());
-        timetableDto.setAcademicClass(teacher.getAcademicClass());
+        timetableDto.setId(timetable.getId());
+        timetableDto.setStartDate(timetable.getStartDate());
+        timetableDto.setEndDate(timetable.getEndDate());
+        timetableDto.setAcademicClass(timetable.getAcademicClass());
         return timetableDto;
     }
 
