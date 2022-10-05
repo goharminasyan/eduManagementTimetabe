@@ -16,11 +16,11 @@ public class TimetableDto {
     private Long id;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @NotBlank(message = "Please, select the date")
+    @NotNull(message = "Please, select the date")
     private LocalDate startDate;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @NotBlank(message = "Please, select the date")
+    @NotNull(message = "Please, select the date")
     private LocalDate endDate;
 
     private AcademicClass academicClass;

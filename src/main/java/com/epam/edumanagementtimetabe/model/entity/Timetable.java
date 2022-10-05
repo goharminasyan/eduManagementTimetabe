@@ -3,9 +3,9 @@ package com.epam.edumanagementtimetabe.model.entity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.*;
 import java.util.Objects;
 
 @Entity
@@ -32,7 +32,7 @@ public class Timetable {
     public Timetable() {
     }
 
-    public Timetable(Long id,  LocalDate startDate,  LocalDate endDate, AcademicClass academicClass) {
+    public Timetable(Long id, LocalDate startDate, LocalDate endDate, AcademicClass academicClass) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;

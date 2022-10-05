@@ -9,7 +9,7 @@ public interface TimetableService {
 
     List<Timetable> findAll();
 
-    void create(TimetableDto timetableDto);
+    void create(Timetable timetable);
 
     void delete(Long id);
 
