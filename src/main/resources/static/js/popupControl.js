@@ -1,12 +1,12 @@
 function PopUpShowMonday() {
     $("#popup-container").show();
-    document.getElementById("demo").innerHTML = document.getElementById("monday").getElementsByTagName("a").item(0).text;;
     $("#main-wrapper").css("-webkit-filter", "blur(10px)");
     $("#header").css("-webkit-filter", "blur(10px)");
+    $("#header").css("pointer-events", "none");
     $("#main-wrapper").css("pointer-events", "none");
     $("#header").css("pointer-events", "none");
     $("#show-btn").css("pointer-events", "none");
-    $("#show-btn").css("-webkit-filter", "blur(1px)");
+    $("#show-btn").css("-webkit-filter", "blur(10px)");
 }
 
 function PopUpShowTuesday() {
@@ -18,7 +18,7 @@ function PopUpShowTuesday() {
     $("#main-wrapper").css("pointer-events", "none");
     $("#header").css("pointer-events", "none");
     $("#show-btn").css("pointer-events", "none");
-    $("#show-btn").css("-webkit-filter", "blur(1px)");
+    $("#show-btn").css("-webkit-filter", "blur(10px)");
 }
 
 function PopUpHide() {

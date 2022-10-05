@@ -1,8 +1,7 @@
 package com.epam.edumanagementtimetabe.model.entity;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.*;
 
@@ -16,7 +15,7 @@ public class AcademicClass {
 
     @Size(max = 50, message = "Symbols can't be more than 50")
     @Column(unique = true)
-    @NotBlank(message = "Please, fill the required fields")
+    @NotNull(message = "Please, fill the required fields")
     private String classNumber;
 
     @ManyToMany( fetch = FetchType.EAGER)

@@ -173,22 +173,23 @@
         <button class="close-btn" title="close" onclick="PopUpHide()">×</button>
         <h1>Add Lesson</h1>
 
-        <form id="form" class="form" th:method="POST" th:action="@{/timetable/creation}">
+        <form id="form" class="form" th:method="POST" th:action="@{'/timetable/creation'}" th:object="${courseForTable}">
 
-            <!--            <script th:inline="javascript" th:if="${#fields.hasAnyErrors()} or ${duplicated}">-->
-            <!--                PopUpShow();-->
-            <!--            </script>-->
+            <script th:inline="javascript" th:if="${#fields.hasAnyErrors()}">
+                PopUpShowMonday();
+            </script>
             <div class="popup-wrapper">
                 <div class="half">
-                    <input id="demo" type="hidden" name="nameOfDay" th:value="Monday"/>
-                    <input id="class" type="hidden" name="class" th:value="5A"/>
+                    <input id="demo" type="hidden" name="dayOfWeek" th:value="Monday"/>
+                    <input id="class" type="hidden" name="academicClass" th:value="${academicClass.id}"/>
                     <label class="popup-label-title">Course <span style="color:#A30014">*</span></label>
-                    <select class="form_input" th:name="academicCourse" th:id="academicCourse">
-                        <option class="short" data-limit="23" th:value="*{courses}"></option>
-                        <option class="short" data-limit="23" th:each="course : ${courses}" th:value="${course.id}"
-                                th:text="${course.getName()}"></option>
+                    <select class="form_input" th:name="academicCourse" th:id="academicCourse" th:field="*{academicCourse}">
+                        <option th:if="*{academicCourse == null}" class="short" th:text="'Select Course'" data-limit="23" th:value="null"></option>
+                        <option class="short" data-limit="23" th:each="item : ${courses}" th:value="${item.id}"
+                                th:text="${item.getName()}"></option>
                     </select>
-                    <div class="error"></div>
+                    <div class="error" th:if="${#fields.hasErrors('academicCourse')}"
+                         th:errors="*{academicCourse}"></div>
                 </div>
                 <div class="half2"></div>
                 <div name="btn-div">
