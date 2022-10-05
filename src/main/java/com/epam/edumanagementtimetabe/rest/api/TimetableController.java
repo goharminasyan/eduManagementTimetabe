@@ -9,7 +9,6 @@ import com.epam.edumanagementtimetabe.rest.service.CoursesForTimetableService;
 import com.epam.edumanagementtimetabe.rest.service.TimetableService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,15 +21,17 @@ public class TimetableController {
     private final AcademicCourseService academicCourseService;
     private final CoursesForTimetableService coursesService;
     private final AcademicClassService academicClassService;
+    private final TimetableService timetableService;
 
 
     public TimetableController(AcademicCourseService academicCourseService,
                                CoursesForTimetableService coursesService,
-                               AcademicClassService academicClassService) {
+                               AcademicClassService academicClassService, TimetableService timetableService) {
 
         this.academicCourseService = academicCourseService;
         this.coursesService = coursesService;
         this.academicClassService = academicClassService;
+        this.timetableService = timetableService;
     }
 
     @GetMapping
@@ -44,27 +45,31 @@ public class TimetableController {
         model.addAttribute("courses", academicCourseService.findAll());
         model.addAttribute("courseForTable", new CoursesForTimetableDto());
         model.addAttribute("academicClass", academicClassService.findByName("5A"));
-        model.addAttribute("lessonsOfMonday",courseService.getCoursesForMonday("Monday"));
+        model.addAttribute("lessonsOfMonday",coursesService.getCoursesForMonday("Monday"));
         model.addAttribute("timetable", new TimetableDto());
-        model.addAttribute("lessonsOfMonday", courseService.getCoursesForMonday("Monday"));
 
         return "timetable4-1";
     }
 
     @PostMapping()
-    public String createTimetable(@ModelAttribute("timetable")  TimetableDto timetableDto,
-                                  @RequestParam("class") String thisClass, Model model) {
+    public String createTimetable(@ModelAttribute("timetable") @Valid TimetableDto timetableDto,
+                                  @RequestParam("class") String thisClass, Model model, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("courseForTable", new CoursesForTimetableDto());
+            model.addAttribute("timetable", new TimetableDto());
+            model.addAttribute("academicClass", academicClassService.findByName("5A"));
+            model.addAttribute("courses", academicCourseService.findAll());
+            model.addAttribute("lessonsOfMonday", coursesService.getCoursesForMonday("Monday"));
+            return "timetable4-1";
+        }
         AcademicClass byName = academicClassService.findByName(thisClass);
         timetableDto.setAcademicClass(byName);
         timetableService.create(timetableDto);
-        model.addAttribute("lessonsOfMonday", courseService.getCoursesForMonday("Monday"));
+        model.addAttribute("lessonsOfMonday", coursesService.getCoursesForMonday("Monday"));
         return "redirect:/timetable";
     }
 
     @PostMapping("/creation")
-    public String post4_1(@ModelAttribute("courseForTable") CoursesForTimetableDto coursesForTimetableDto,
-                          @RequestParam("nameOfDay") String nameOfDay, @RequestParam("class") String thisClass,
-                          BindingResult result, Model model) {
     public String post4_1(@ModelAttribute("courseForTable") @Valid CoursesForTimetableDto coursesForTimetableDto,
                           BindingResult result, Model model) {
         if (result.hasErrors()) {
@@ -74,16 +79,9 @@ public class TimetableController {
         }
 
         model.addAttribute("courses", academicCourseService.findAll());
-        AcademicClass byName = academicClassService.findByName(thisClass);
-        coursesForTimetableDto.setDayOfWeek(nameOfDay);
-        coursesForTimetableDto.setAcademicClass(byName);
 
         coursesService.create(coursesForTimetableDto);
         model.addAttribute("lessonsOfMonday",coursesService.getCoursesForMonday("Monday"));
-
-        coursesForTimetableDto.setDayOfWeek(coursesForTimetableDto.getDayOfWeek());
-        courseService.create(coursesForTimetableDto);
-        model.addAttribute("lessonsOfMonday",courseService.getCoursesForMonday("Monday"));
         model.addAttribute("academicClass", academicClassService.findByName("5A"));
         return "timetable4-1";
     }

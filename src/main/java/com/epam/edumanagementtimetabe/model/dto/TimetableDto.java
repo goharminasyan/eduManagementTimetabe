@@ -5,6 +5,7 @@ import com.epam.edumanagementtimetabe.model.entity.AcademicCourse;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -15,11 +16,11 @@ public class TimetableDto {
     private Long id;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @NotNull(message = "Please, select the date")
+    @NotBlank(message = "Please, select the date")
     private LocalDate startDate;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    @NotNull(message = "Please, select the date")
+    @NotBlank(message = "Please, select the date")
     private LocalDate endDate;
 
     private AcademicClass academicClass;
