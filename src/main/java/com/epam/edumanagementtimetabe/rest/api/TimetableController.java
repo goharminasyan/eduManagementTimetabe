@@ -1,63 +1,39 @@
 package com.epam.edumanagementtimetabe.rest.api;
 
 import com.epam.edumanagementtimetabe.model.dto.CoursesForTimetableDto;
-import com.epam.edumanagementtimetabe.model.dto.TimetableDto;
 import com.epam.edumanagementtimetabe.model.entity.AcademicClass;
-import com.epam.edumanagementtimetabe.model.entity.CoursesForTimetable;
 import com.epam.edumanagementtimetabe.rest.service.AcademicClassService;
 import com.epam.edumanagementtimetabe.rest.service.AcademicCourseService;
 import com.epam.edumanagementtimetabe.rest.service.CoursesForTimetableService;
-import com.epam.edumanagementtimetabe.rest.service.TimetableService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-
 @Controller
 @RequestMapping("/timetable")
 public class TimetableController {
 
     private final AcademicCourseService academicCourseService;
-
-    private final CoursesForTimetableService courseService;
-
+    private final CoursesForTimetableService coursesService;
     private final AcademicClassService academicClassService;
 
-    private final TimetableService timetableService;
 
-    public TimetableController(AcademicCourseService academicCourseService, CoursesForTimetableService courseService, AcademicClassService academicClassService, TimetableService timetableService) {
+    public TimetableController(AcademicCourseService academicCourseService,
+                               CoursesForTimetableService coursesService,
+                               AcademicClassService academicClassService) {
         this.academicCourseService = academicCourseService;
-        this.courseService = courseService;
+        this.coursesService = coursesService;
         this.academicClassService = academicClassService;
-        this.timetableService = timetableService;
-    }
-
-    @GetMapping
-    public String get4(Model model) {
-        model.addAttribute("timetable", "timetable");
-        return "timetable4";
     }
 
     @GetMapping("/creation")
     public String get4_1(Model model) {
         model.addAttribute("courses", academicCourseService.findAll());
         model.addAttribute("courseForTable", new CoursesForTimetableDto());
-        model.addAttribute("timetable", new TimetableDto());
-        model.addAttribute("lessonsOfMonday", courseService.getCoursesForMonday("Monday"));
+        model.addAttribute("lessonsOfMonday",coursesService.getCoursesForMonday("Monday"));
         return "timetable4-1";
-    }
-
-    @PostMapping()
-    public String createTimetable(@ModelAttribute("timetable")  TimetableDto timetableDto,
-                                  @RequestParam("class") String thisClass, Model model) {
-        AcademicClass byName = academicClassService.findByName(thisClass);
-        timetableDto.setAcademicClass(byName);
-        timetableService.create(timetableDto);
-        model.addAttribute("lessonsOfMonday", courseService.getCoursesForMonday("Monday"));
-        return "redirect:/timetable";
     }
 
     @PostMapping("/creation")
@@ -69,17 +45,23 @@ public class TimetableController {
         AcademicClass byName = academicClassService.findByName(thisClass);
         coursesForTimetableDto.setDayOfWeek(nameOfDay);
         coursesForTimetableDto.setAcademicClass(byName);
-        courseService.create(coursesForTimetableDto);
-        model.addAttribute("lessonsOfMonday", courseService.getCoursesForMonday("Monday"));
+        coursesService.create(coursesForTimetableDto);
+        model.addAttribute("lessonsOfMonday",coursesService.getCoursesForMonday("Monday"));
         return "timetable4-1";
     }
+
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id, Model model) {
         if (id != null) {
-            courseService.delete(id);
+            coursesService.renameById(id);
         }
-        model.addAttribute("lessonsOfMonday",courseService.getCoursesForMonday("Monday"));
-        return "timetable4-1";
+        return "redirect:/timetable/creation";
+    }
+
+    @GetMapping
+    public String get4(ModelMap modelMap) {
+        modelMap.addAttribute("timetable", "timetable");
+        return "timetable4";
     }
 }
