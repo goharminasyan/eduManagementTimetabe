@@ -31,6 +31,10 @@ function PopUpHide() {
     $("#show-btn").css("-webkit-filter", "blur(0px)");
 }
 
+function deleteItem(){
+    var value = document.getElementById("delete").value;
+}
+
 function add() {
 
 }
