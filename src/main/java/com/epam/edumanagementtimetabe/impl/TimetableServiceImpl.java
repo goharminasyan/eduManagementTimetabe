@@ -24,8 +24,8 @@ public class TimetableServiceImpl implements TimetableService {
     }
 
     @Override
-    public void create(TimetableDto timetableDto) {
-        timetableRepository.save(TimetableMapper.toTimetable(timetableDto));
+    public void create(Timetable timetable) {
+        timetableRepository.save(timetable);
     }
 
     @Override

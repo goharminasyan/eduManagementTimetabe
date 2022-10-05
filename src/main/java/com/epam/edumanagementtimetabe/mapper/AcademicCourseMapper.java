@@ -17,7 +17,7 @@ public class AcademicCourseMapper {
 
     public static AcademicCourse toAcademicCourse(AcademicCourseDto academicCourseDto) {
         AcademicCourse academicCourse = new AcademicCourse();
-        academicCourse.setId(academicCourseDto.getId());
+//        academicCourse.setId(academicCourseDto.getId());
         academicCourse.setName(academicCourseDto.getName());
         academicCourse.setSubject(academicCourseDto.getSubject());
         return academicCourse;
