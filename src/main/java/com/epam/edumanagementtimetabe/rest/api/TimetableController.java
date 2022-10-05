@@ -45,13 +45,13 @@ public class TimetableController {
         model.addAttribute("courses", academicCourseService.findAll());
         model.addAttribute("courseForTable", new CoursesForTimetableDto());
         model.addAttribute("academicClass", academicClassService.findByName("5A"));
-        model.addAttribute("lessonsOfMonday",coursesService.getCoursesForMonday("Monday"));
+        model.addAttribute("lessonsOfMonday", coursesService.getCoursesForMonday("Monday"));
         model.addAttribute("timetable", new TimetableDto());
 
         return "timetable4-1";
     }
 
-    @PostMapping()
+    @PostMapping
     public String createTimetable(@ModelAttribute("timetable") @Valid TimetableDto timetableDto,
                                   @RequestParam("class") String thisClass, Model model, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -72,16 +72,18 @@ public class TimetableController {
     @PostMapping("/creation")
     public String post4_1(@ModelAttribute("courseForTable") @Valid CoursesForTimetableDto coursesForTimetableDto,
                           BindingResult result, Model model) {
+
         if (result.hasErrors()) {
             model.addAttribute("courses", academicCourseService.findAll());
+            model.addAttribute("timetable", new TimetableDto());
             model.addAttribute("academicClass", academicClassService.findByName("5A"));
             return "timetable4-1";
         }
-
+        model.addAttribute("timetable", new TimetableDto());
         model.addAttribute("courses", academicCourseService.findAll());
 
         coursesService.create(coursesForTimetableDto);
-        model.addAttribute("lessonsOfMonday",coursesService.getCoursesForMonday("Monday"));
+        model.addAttribute("lessonsOfMonday", coursesService.getCoursesForMonday("Monday"));
         model.addAttribute("academicClass", academicClassService.findByName("5A"));
         return "timetable4-1";
     }
