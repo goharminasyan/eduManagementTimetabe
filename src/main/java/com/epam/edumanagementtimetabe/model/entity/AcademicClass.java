@@ -19,18 +19,16 @@ public class AcademicClass {
     @NotBlank(message = "Please, fill the required fields")
     private String classNumber;
 
-    @ManyToMany( fetch = FetchType.EAGER)
+    @ManyToMany
     private List<CoursesForTimetable> coursesForTimetableList = new ArrayList<>();
 
-    public AcademicClass(Long id, String classNumber, List<CoursesForTimetable> coursesForTimetableList) {
-        this.id = id;
+    public AcademicClass( String classNumber, List<CoursesForTimetable> coursesForTimetableList) {
         this.classNumber = classNumber;
         this.coursesForTimetableList = coursesForTimetableList;
     }
 
     public AcademicClass() {
     }
-
 
 
     public void setClassNumber(String classNumber) {

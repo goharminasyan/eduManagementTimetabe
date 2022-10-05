@@ -6,7 +6,6 @@ import com.epam.edumanagementtimetabe.model.entity.CoursesForTimetable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 public interface CoursesForTimetableService {
@@ -15,5 +14,7 @@ public interface CoursesForTimetableService {
 
     void create(CoursesForTimetableDto coursesForTimetableDto);
 
-    void delete(Long id);
+    @Modifying(clearAutomatically = true)
+    @Query(nativeQuery = true, value = "UPDATE courses_table SET day_of_week = 'Not defined' WHERE courses_table.id =(?1);")
+    CoursesForTimetable renameById( Long id);
 }

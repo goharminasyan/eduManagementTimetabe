@@ -4,24 +4,24 @@ import com.epam.edumanagementtimetabe.model.entity.CoursesForTimetable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Repository
-public interface CourseForTimetableRepository extends JpaRepository<CoursesForTimetable, Long> {
+import static javax.transaction.Transactional.TxType.REQUIRES_NEW;
+
+public interface CoursesForTimetableRepository extends JpaRepository<CoursesForTimetable, Long> {
 
     List<CoursesForTimetable> findByDayOfWeek(String dayOfWeek);
 
-    @Transactional
     @Modifying(clearAutomatically = true)
     @Query(nativeQuery = true, value = "insert into courses_table(day_of_week, academic_course_id, academic_class_id) " +
             "values(?1,?2,?3)")
     void create(String dayOfWeek, Long academicCourseId, Long academicClassId);
 
-    @Modifying
-    @Transactional
-    @Query(nativeQuery = true, value = "DELETE FROM courses_table WHERE id =(?1);")
-    void delete(Long id);
+    @Query(nativeQuery = true, value = "UPDATE courses_table SET day_of_week = 'Not defined' WHERE id =(?1);")
+    CoursesForTimetable renameById( Long id);
+
 }

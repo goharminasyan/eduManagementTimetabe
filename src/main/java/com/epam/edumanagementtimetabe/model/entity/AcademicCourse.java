@@ -27,14 +27,14 @@ public class AcademicCourse {
     @NotNull(message = "Please, fill the required fields")
     private Subject subject;
 
-    @ManyToMany( fetch = FetchType.EAGER)
+    @ManyToMany
     private List<CoursesForTimetable> coursesForTimetableCourses = new ArrayList<>();
+
 
     public AcademicCourse() {
     }
 
     public AcademicCourse(String name, Subject subject, List<CoursesForTimetable> coursesForTimetableCourses) {
-
         this.name = name;
         this.subject = subject;
         this.coursesForTimetableCourses = coursesForTimetableCourses;
@@ -43,7 +43,6 @@ public class AcademicCourse {
     public Long getId() {
         return id;
     }
-
 
     public String getName() {
         return name;

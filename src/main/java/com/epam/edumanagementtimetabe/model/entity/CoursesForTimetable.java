@@ -1,13 +1,11 @@
 package com.epam.edumanagementtimetabe.model.entity;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.context.annotation.Scope;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,19 +17,18 @@ public class CoursesForTimetable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="courses_table",
-            joinColumns = @JoinColumn( name="id"),
-            inverseJoinColumns = @JoinColumn( name="academic_course_id"))
+    @ManyToMany
+    @JoinTable(name = "courses_table", joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "academic_course_id"))
     private List<AcademicCourse> academicCourse;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="courses_table",
-            joinColumns = @JoinColumn( name="id"),
-            inverseJoinColumns = @JoinColumn( name="academic_class_id"))
+    @ManyToMany
+    @JoinTable(name = "courses_table", joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "academic_class_id"))
     private List<AcademicClass> academicClass;
 
     private String dayOfWeek;
+
 
     public CoursesForTimetable() {
     }
@@ -46,7 +43,9 @@ public class CoursesForTimetable {
         return id;
     }
 
-
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public List<AcademicCourse> getAcademicCourse() {
         return academicCourse;
