@@ -54,7 +54,7 @@ public class TimetableController {
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id, Model model) {
         if (id != null) {
-            coursesService.renameById(id);
+            coursesService.delete(id);
         }
         return "redirect:/timetable/creation";
     }

@@ -12,4 +12,8 @@ public interface CoursesForTimetableService {
     void create(CoursesForTimetableDto coursesForTimetableDto);
 
     void renameById(Long id);
+
+    void delete(Long id);
+
+    void deleteById(Long id);
 }
