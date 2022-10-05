@@ -3,7 +3,6 @@ package com.epam.edumanagementtimetabe.rest.api;
 import com.epam.edumanagementtimetabe.model.dto.CoursesForTimetableDto;
 import com.epam.edumanagementtimetabe.model.dto.TimetableDto;
 import com.epam.edumanagementtimetabe.model.entity.AcademicClass;
-import com.epam.edumanagementtimetabe.model.entity.CoursesForTimetable;
 import com.epam.edumanagementtimetabe.rest.service.AcademicClassService;
 import com.epam.edumanagementtimetabe.rest.service.AcademicCourseService;
 import com.epam.edumanagementtimetabe.rest.service.CoursesForTimetableService;
@@ -21,18 +20,17 @@ import java.time.LocalDate;
 public class TimetableController {
 
     private final AcademicCourseService academicCourseService;
-
-    private final CoursesForTimetableService courseService;
-
+    private final CoursesForTimetableService coursesService;
     private final AcademicClassService academicClassService;
 
-    private final TimetableService timetableService;
 
-    public TimetableController(AcademicCourseService academicCourseService, CoursesForTimetableService courseService, AcademicClassService academicClassService, TimetableService timetableService) {
+    public TimetableController(AcademicCourseService academicCourseService,
+                               CoursesForTimetableService coursesService,
+                               AcademicClassService academicClassService) {
+
         this.academicCourseService = academicCourseService;
-        this.courseService = courseService;
+        this.coursesService = coursesService;
         this.academicClassService = academicClassService;
-        this.timetableService = timetableService;
     }
 
     @GetMapping
@@ -47,6 +45,7 @@ public class TimetableController {
         model.addAttribute("courseForTable", new CoursesForTimetableDto());
         model.addAttribute("timetable", new TimetableDto());
         model.addAttribute("lessonsOfMonday", courseService.getCoursesForMonday("Monday"));
+
         return "timetable4-1";
     }
 
@@ -69,17 +68,19 @@ public class TimetableController {
         AcademicClass byName = academicClassService.findByName(thisClass);
         coursesForTimetableDto.setDayOfWeek(nameOfDay);
         coursesForTimetableDto.setAcademicClass(byName);
-        courseService.create(coursesForTimetableDto);
-        model.addAttribute("lessonsOfMonday", courseService.getCoursesForMonday("Monday"));
+
+        coursesService.create(coursesForTimetableDto);
+        model.addAttribute("lessonsOfMonday",coursesService.getCoursesForMonday("Monday"));
+
         return "timetable4-1";
     }
+
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id, Model model) {
         if (id != null) {
-            courseService.delete(id);
+            coursesService.renameById(id);
         }
-        model.addAttribute("lessonsOfMonday",courseService.getCoursesForMonday("Monday"));
-        return "timetable4-1";
+        return "redirect:/timetable/creation";
     }
 }
