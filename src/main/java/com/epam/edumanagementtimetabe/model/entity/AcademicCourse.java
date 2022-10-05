@@ -22,12 +22,12 @@ public class AcademicCourse {
     @NotBlank(message = "Please, fill the required fields")
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "subject_id")
     @NotNull(message = "Please, fill the required fields")
     private Subject subject;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<CoursesForTimetable> coursesForTimetableCourses = new ArrayList<>();
 
 
