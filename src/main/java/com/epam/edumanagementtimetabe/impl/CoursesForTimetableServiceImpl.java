@@ -35,8 +35,9 @@ public class CoursesForTimetableServiceImpl implements CoursesForTimetableServic
                 coursesForTimetableDto.getAcademicClass().getId());
     }
 
+    @Transactional
     @Override
-    public CoursesForTimetable renameById(Long id) {
-       return coursesRepository.renameById(id);
+    public void renameById(Long id) {
+        coursesRepository.renameById(id);
     }
 }

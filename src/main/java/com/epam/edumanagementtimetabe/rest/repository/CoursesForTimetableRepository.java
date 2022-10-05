@@ -21,7 +21,8 @@ public interface CoursesForTimetableRepository extends JpaRepository<CoursesForT
             "values(?1,?2,?3)")
     void create(String dayOfWeek, Long academicCourseId, Long academicClassId);
 
+    @Modifying(clearAutomatically = true)
     @Query(nativeQuery = true, value = "UPDATE courses_table SET day_of_week = 'Not defined' WHERE id =(?1);")
-    CoursesForTimetable renameById( Long id);
+    void renameById( Long id);
 
 }

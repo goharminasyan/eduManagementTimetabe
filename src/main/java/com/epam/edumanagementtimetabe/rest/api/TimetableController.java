@@ -56,8 +56,7 @@ public class TimetableController {
         if (id != null) {
             coursesService.renameById(id);
         }
-        model.addAttribute("lessonsOfMonday",coursesService.getCoursesForMonday("Monday"));
-        return "timetable4-1";
+        return "redirect:/timetable/creation";
     }
 
     @GetMapping
