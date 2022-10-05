@@ -31,7 +31,7 @@ public class CoursesForTimetableServiceImpl implements CoursesForTimetableServic
     @Override
     public void create(CoursesForTimetableDto coursesForTimetableDto) {
         coursesRepository.create(coursesForTimetableDto.getDayOfWeek(),
-                coursesForTimetableDto.getAcademicCourse().getId(),
+                coursesForTimetableDto.getAcademicCourse().getName(),
                 coursesForTimetableDto.getAcademicClass().getId());
     }
 

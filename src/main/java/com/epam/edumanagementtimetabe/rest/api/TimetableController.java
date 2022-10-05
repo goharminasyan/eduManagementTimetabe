@@ -54,8 +54,8 @@ public class TimetableController {
     }
 
     @PostMapping
-    public String createTimetable(@ModelAttribute("timetable") @Valid Timetable timetable, BindingResult result,
-                                  @RequestParam("class") String thisClass, Model model) {
+    public String createTimetable(@ModelAttribute("timetable") @Valid Timetable timetable,
+                                  BindingResult result, @RequestParam("class") String thisClass, Model model) {
         LocalDate startDate = timetable.getStartDate();
         LocalDate endDate = timetable.getEndDate();
         LocalDate now = LocalDate.now();
@@ -125,7 +125,6 @@ public class TimetableController {
         }
         model.addAttribute("timetable", new Timetable());
         model.addAttribute("courses", academicCourseService.findAll());
-
         coursesService.create(coursesForTimetableDto);
         model.addAttribute("lessonsOfMonday", coursesService.getCoursesForMonday("Monday"));
         model.addAttribute("academicClass", academicClassService.findByName("5A"));

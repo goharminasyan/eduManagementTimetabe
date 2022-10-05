@@ -3,6 +3,7 @@ package com.epam.edumanagementtimetabe.model.dto;
 import com.epam.edumanagementtimetabe.model.entity.Subject;
 
 public class AcademicCourseDto {
+
     private Long id;
     private String name;
     private Subject subject;

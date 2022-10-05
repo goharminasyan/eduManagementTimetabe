@@ -14,6 +14,7 @@ public class CoursesForTimetableDto {
 
     @NotNull(message = "Please, fill the required fields")
     private AcademicCourse academicCourse;
+
     @NotNull(message = "Please, fill the required fields")
     private AcademicClass academicClass;
 
