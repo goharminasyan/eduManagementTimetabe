@@ -1,0 +1,14 @@
+name: generating-jar
+
+on: 
+  push:
+    branches: 
+      - master
+jobs:
+  create_jar:
+  
+    runs-on: windows
+    
+    steps:
+      -name: mvn command 
+       run: mvn clean install
