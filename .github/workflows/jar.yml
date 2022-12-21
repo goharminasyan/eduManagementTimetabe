@@ -1,4 +1,4 @@
-name: generating-jar
+name: project jar file 
 
 on: 
   push:
@@ -7,12 +7,15 @@ on:
 jobs:
   create_jar:
   
-    runs-on : ubuntu-latest
+    runs-on : windows-latest
     
     steps:
-      - name : clone my repo
+      - name : clone repository
         uses: actions/checkout@v1
     
-      - name : mvn command 
-        run : ls -la
+      - name : get folders
+        run : dir
+        
+      - name : generating jar
+        run : mvn clean install
        
