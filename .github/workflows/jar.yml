@@ -1,4 +1,4 @@
-name: project jar file 
+name: Project jar file 
 
 on: 
   push:
