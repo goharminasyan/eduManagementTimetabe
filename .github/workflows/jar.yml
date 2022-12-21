@@ -25,7 +25,7 @@ jobs:
         run : java -version 
         
       - name : create jar file for project
-        run : mvn clean install'
+        run : mvn clean install
         
       - name : get folders
         run : dir  
