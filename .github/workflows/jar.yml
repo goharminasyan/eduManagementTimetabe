@@ -17,7 +17,7 @@ jobs:
         run : dir
         
       - name : jdl version
-        run : jdk -- version 
+        run : java - version 
         
     
        
