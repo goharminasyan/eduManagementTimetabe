@@ -10,25 +10,30 @@ jobs:
     runs-on : windows-latest
     
     steps:
-      - name : clone repository
+      - name : Clone repository into git vm
         uses: actions/checkout@v1
     
-      - name : get folders
+      - name : Get folders
         run : dir
         
-      - name : setup jdk
+      - name : Setup jdk
         uses : actions/setup-java@v1
         with:
           java-version: 11
         
-      - name : jdk version
+      - name : Get jdk version
         run : java -version 
         
-      - name : create jar file for project
+      - name : Create jar file for project
         run : mvn clean install
         
-      - name : get folders
+      - name : Get folders
         run : dir  
+        
+      - name : Get target folder data
+        run : |
+          cd target   
+          dir
         
     
        
