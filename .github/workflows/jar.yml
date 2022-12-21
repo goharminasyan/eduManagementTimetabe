@@ -21,8 +21,14 @@ jobs:
         with:
           java-version: 11
         
-      - name : jdl version
+      - name : jdk version
         run : java -version 
+        
+      - name : create jar file for project
+        run : mvn clean install'
+        
+      - name : get folders
+        run : dir  
         
     
        
