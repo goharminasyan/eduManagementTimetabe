@@ -10,6 +10,9 @@ jobs:
     runs-on : windows-latest
     
     steps:
+      - name : Get folders
+        run : dir  
+        
       - name : Clone repository into git vm
         uses: actions/checkout@v1
     
