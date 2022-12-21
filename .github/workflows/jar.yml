@@ -7,9 +7,9 @@ on:
 jobs:
   create_jar:
   
-    runs-on : windows-latest
+    runs-on : ubuntu-latest
     
     steps:
       - name : mvn command 
-        run : dir
+        run : ls -la
        
