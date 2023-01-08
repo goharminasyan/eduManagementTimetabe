@@ -44,7 +44,7 @@ jobs:
           use_existing_version_if_available: false
           application_name: awstest
           environment_name: dev-test
-          version_label: 12345
+          version_label: 1234567
           region: ap-south-1
           deployment_package: timetable.jar
         
