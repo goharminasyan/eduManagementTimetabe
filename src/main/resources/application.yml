@@ -7,9 +7,9 @@ spring:
   datasource:
     platform: postgres
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/timetable
+    url: database-2.cydbsa2db7fu.ap-south-1.rds.amazonaws.com
     username: postgres
-    password: root
+    password: 12345678
 
   jpa:
     show-sql: true
