@@ -50,7 +50,7 @@ jobs:
           use_existing_version_if_available: false
           application_name: timetableTest
           environment_name: Timetablettest-env
-          version_label: ${{github.SHA}}
+          version_label: 12345
           region: ap-south-1
           deployment_package: timetable.jar
         
