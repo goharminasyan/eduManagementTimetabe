@@ -8,10 +8,7 @@ jobs:
   build:
     runs-on : ubuntu-latest
     
-    steps:
-      - name : Get folders
-        run : dir  
-        
+    steps:        
       - name : Clone repository into git vm
         uses: actions/checkout@v1
         
@@ -22,10 +19,7 @@ jobs:
         
       - name : Create jar file for project
         run : mvn clean install
-        
-      - name : Get folders
-        run : dir  
- 
+    
       - name: Upload JAR
         uses: actions/upload-artifact@v2
         with:
@@ -49,7 +43,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           use_existing_version_if_available: false
           application_name: awstest
-          environment_name: dev-test-env
+          environment_name: dev-test
           version_label: 12345
           region: ap-south-1
           deployment_package: timetable.jar
