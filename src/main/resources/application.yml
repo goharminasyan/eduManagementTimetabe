@@ -7,7 +7,7 @@ spring:
   datasource:
     platform: postgres
     driverClassName: org.postgresql.Driver
-    url: database-2.cydbsa2db7fu.ap-south-1.rds.amazonaws.com
+    url: jdbc:postgresql://database-2.cydbsa2db7fu.ap-south-1.rds.amazonaws.com/postgres
     username: postgres
     password: 12345678
 
@@ -25,4 +25,4 @@ spring:
     enabled: false
 
 server:
-  port: 5000
+  port: 8082
