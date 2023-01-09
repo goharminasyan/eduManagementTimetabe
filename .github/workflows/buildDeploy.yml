@@ -46,7 +46,7 @@ jobs:
           environment_name: dev-test
           version_label: ${{ github.sha }}
           region: ap-south-1
-          deployment_package: timetable.jar
+       
         
     
        
